@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Контакты — qqq care.</title>
+<meta name="description" content="Свяжитесь с брендом корейской косметики qqq care." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { brand: '#0C5740' },
+        fontFamily: { sans: ['Nunito', 'sans-serif'] },
+      },
+    },
+  };
+</script>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito', sans-serif; }
+  .blob { pointer-events: none; position: absolute; border-radius: 9999px; filter: blur(70px); }
+  @keyframes slideUp { from { transform: translate(-50%, 16px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+  .toast-anim { animation: slideUp .3s ease; }
+</style>
+</head>
+
+<body class="bg-white text-gray-800 antialiased">
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="sticky top-0 z-30 bg-white/85 backdrop-blur-md border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="index.html" class="text-2xl font-extrabold text-brand tracking-tight">qqq care.</a>
+
+      <nav class="hidden sm:flex items-center gap-8">
+        <a href="catalog.html" class="text-gray-600 hover:text-brand font-semibold text-sm transition">Каталог</a>
+        <a href="about.html" class="text-gray-600 hover:text-brand font-semibold text-sm transition">О нас</a>
+        <a href="contacts.html" class="text-brand font-extrabold text-sm">Контакты</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button id="cart-btn" aria-label="Открыть корзину" class="relative text-gray-500 hover:bg-brand/10 hover:text-brand rounded-full p-2.5 transition">
+          <i data-lucide="shopping-bag" style="width:22px;height:22px"></i>
+          <span id="cart-badge" class="hidden absolute -top-1 -right-1 bg-brand text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+        </button>
+
+        <button id="menu-btn" aria-label="Открыть меню" class="sm:hidden text-gray-500 hover:bg-brand/10 hover:text-brand rounded-full p-2.5 transition">
+          <i data-lucide="menu" style="width:22px;height:22px"></i>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobile-nav" class="hidden sm:hidden flex-col gap-1 px-4 pb-4 border-t border-gray-100">
+      <a href="catalog.html" class="block text-gray-600 hover:text-brand font-semibold text-sm py-2.5 transition">Каталог</a>
+      <a href="about.html" class="block text-gray-600 hover:text-brand font-semibold text-sm py-2.5 transition">О нас</a>
+      <a href="contacts.html" class="block text-brand font-extrabold text-sm py-2.5">Контакты</a>
+    </nav>
+  </header>
+
+  <!-- ==================== ХЛЕБНЫЕ КРОШКИ ==================== -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-gray-400">
+      <a href="index.html" class="hover:text-brand transition">Главная</a>
+      <i data-lucide="chevron-right" style="width:14px;height:14px"></i>
+      <span class="text-brand">Контакты</span>
+    </nav>
+  </div>
+
+  <!-- ==================== ЗАГОЛОВОК ==================== -->
+  <section class="relative overflow-hidden">
+    <div class="blob bg-brand/10 w-80 h-80 -top-24 -right-24"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 pb-6">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-brand mb-2">Контакты</h1>
+      <p class="text-gray-500 font-medium">Мы всегда на связи — выберите удобный способ</p>
+    </div>
+  </section>
+
+  <!-- ==================== СПОСОБЫ СВЯЗИ ==================== -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm flex flex-col">
+        <div class="bg-brand/10 w-12 h-12 rounded-2xl flex items-center justify-center mb-4">
+          <i data-lucide="phone" class="text-brand" style="width:22px;height:22px"></i>
+        </div>
+        <h3 class="font-extrabold text-brand mb-1">Телефон</h3>
+        <p class="text-gray-500 text-sm font-medium mb-4">+7 (700) 000-00-00</p>
+        <a href="tel:+77000000000" class="mt-auto inline-flex items-center justify-center gap-2 bg-brand text-white font-bold text-sm py-2.5 rounded-full hover:opacity-90 transition">Позвонить</a>
+      </div>
+
+      <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm flex flex-col">
+        <div class="bg-brand/10 w-12 h-12 rounded-2xl flex items-center justify-center mb-4">
+          <i data-lucide="message-circle" class="text-brand" style="width:22px;height:22px"></i>
+        </div>
+        <h3 class="font-extrabold text-brand mb-1">WhatsApp</h3>
+        <p class="text-gray-500 text-sm font-medium mb-4">+7 (700) 000-00-00</p>
+        <a href="https://wa.me/77000000000" target="_blank" rel="noopener" class="mt-auto inline-flex items-center justify-center gap-2 bg-brand text-white font-bold text-sm py-2.5 rounded-full hover:opacity-90 transition">Написать</a>
+      </div>
+
+      <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm flex flex-col">
+        <div class="bg-brand/10 w-12 h-12 rounded-2xl flex items-center justify-center mb-4">
+          <i data-lucide="mail" class="text-brand" style="width:22px;height:22px"></i>
+        </div>
+        <h3 class="font-extrabold text-brand mb-1">Email</h3>
+        <p class="text-gray-500 text-sm font-medium mb-4">hello@qqqcare.kz</p>
+        <a href="mailto:hello@qqqcare.kz" class="mt-auto inline-flex items-center justify-center gap-2 bg-brand text-white font-bold text-sm py-2.5 rounded-full hover:opacity-90 transition">Написать письмо</a>
+      </div>
+
+      <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm flex flex-col">
+        <div class="bg-brand/10 w-12 h-12 rounded-2xl flex items-center justify-center mb-4">
+          <i data-lucide="instagram" class="text-brand" style="width:22px;height:22px"></i>
+        </div>
+        <h3 class="font-extrabold text-brand mb-1">Instagram</h3>
+        <p class="text-gray-500 text-sm font-medium mb-4">@qqqcare</p>
+        <a href="https://instagram.com/qqqcare" target="_blank" rel="noopener" class="mt-auto inline-flex items-center justify-center gap-2 bg-brand text-white font-bold text-sm py-2.5 rounded-full hover:opacity-90 transition">Подписаться</a>
+      </div>
+
+      <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm flex flex-col">
+        <div class="bg-brand/10 w-12 h-12 rounded-2xl flex items-center justify-center mb-4">
+          <i data-lucide="map-pin" class="text-brand" style="width:22px;height:22px"></i>
+        </div>
+        <h3 class="font-extrabold text-brand mb-1">Адрес</h3>
+        <p class="text-gray-500 text-sm font-medium mb-4">Алматы, Казахстан</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Алматы" target="_blank" rel="noopener" class="mt-auto inline-flex items-center justify-center gap-2 bg-brand text-white font-bold text-sm py-2.5 rounded-full hover:opacity-90 transition">Как добраться</a>
+      </div>
+
+      <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm flex flex-col">
+        <div class="bg-brand/10 w-12 h-12 rounded-2xl flex items-center justify-center mb-4">
+          <i data-lucide="clock" class="text-brand" style="width:22px;height:22px"></i>
+        </div>
+        <h3 class="font-extrabold text-brand mb-3">Часы работы</h3>
+        <div class="flex flex-col gap-1.5 text-sm font-medium text-gray-500">
+          <div class="flex justify-between"><span>Пн–Пт</span><span class="font-bold text-gray-700">9:00–19:00</span></div>
+          <div class="flex justify-between"><span>Сб</span><span class="font-bold text-gray-700">10:00–16:00</span></div>
+          <div class="flex justify-between"><span>Вс</span><span class="font-bold text-gray-700">выходной</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ФОРМА ОБРАТНОЙ СВЯЗИ ==================== -->
+  <section class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
+    <div class="bg-brand/5 rounded-3xl p-6 sm:p-10">
+      <div id="contact-form-wrap">
+        <h2 class="text-2xl font-extrabold text-brand mb-2 text-center">Остались вопросы?</h2>
+        <p class="text-gray-500 font-medium text-center mb-7">Напишите нам, и мы ответим в течение одного рабочего дня</p>
+
+        <form id="contact-form" class="flex flex-col gap-3.5">
+          <label class="block">
+            <span class="text-xs font-bold text-gray-500 mb-1.5 block">Имя</span>
+            <div class="relative">
+              <i data-lucide="user" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" style="width:16px;height:16px"></i>
+              <input required type="text" name="name" placeholder="Как к вам обращаться?" class="w-full rounded-2xl border-[1.5px] border-gray-200 pl-10 pr-4 py-3 text-sm font-medium outline-none focus:border-brand transition bg-white" />
+            </div>
+          </label>
+
+          <label class="block">
+            <span class="text-xs font-bold text-gray-500 mb-1.5 block">Email или телефон</span>
+            <div class="relative">
+              <i data-lucide="mail" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" style="width:16px;height:16px"></i>
+              <input required type="text" name="contact" placeholder="Куда ответить?" class="w-full rounded-2xl border-[1.5px] border-gray-200 pl-10 pr-4 py-3 text-sm font-medium outline-none focus:border-brand transition bg-white" />
+            </div>
+          </label>
+
+          <label class="block">
+            <span class="text-xs font-bold text-gray-500 mb-1.5 block">Сообщение</span>
+            <textarea required name="message" rows="4" placeholder="Расскажите, чем можем помочь" class="w-full rounded-2xl border-[1.5px] border-gray-200 px-4 py-3 text-sm font-medium outline-none focus:border-brand transition bg-white resize-none"></textarea>
+          </label>
+
+          <button type="submit" class="bg-brand text-white w-full py-3.5 rounded-full font-extrabold text-sm mt-2 hover:opacity-90 active:scale-95 transition">Отправить сообщение</button>
+        </form>
+      </div>
+
+      <div id="contact-success" class="hidden flex-col items-center justify-center text-center py-6">
+        <i data-lucide="check-circle-2" class="text-brand mb-4" style="width:52px;height:52px;stroke-width:1.4"></i>
+        <h3 class="font-extrabold text-brand text-lg mb-2">Сообщение отправлено!</h3>
+        <p class="text-gray-500 text-sm font-medium max-w-xs">Мы ответим вам в течение одного рабочего дня.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-brand text-white rounded-t-[2.5rem] mt-6">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 py-12 sm:py-14">
+      <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-8">
+        <div>
+          <p class="text-2xl font-extrabold mb-2">qqq care.</p>
+          <p class="text-sm italic text-white/70 font-medium">quirky qualitative quintessential</p>
+        </div>
+        <div class="flex flex-col gap-2 text-sm">
+          <a href="catalog.html" class="text-white/75 hover:text-white font-semibold transition">Каталог</a>
+          <a href="about.html" class="text-white/75 hover:text-white font-semibold transition">О нас</a>
+          <a href="contacts.html" class="text-white/75 hover:text-white font-semibold transition">Контакты</a>
+        </div>
+        <div class="flex flex-col gap-2 text-sm">
+          <span class="text-white/75 flex items-center gap-2 font-semibold"><i data-lucide="phone" style="width:15px;height:15px"></i> +7 (700) 000-00-00</span>
+          <span class="text-white/75 flex items-center gap-2 font-semibold"><i data-lucide="map-pin" style="width:15px;height:15px"></i> Алматы, Казахстан</span>
+          <span class="text-white/75 flex items-center gap-2 font-semibold"><i data-lucide="instagram" style="width:15px;height:15px"></i> @qqqcare</span>
+        </div>
+      </div>
+      <div class="border-t border-white/15 mt-10 pt-6 text-xs text-white/60 font-medium text-center sm:text-left">
+        <span id="footer-year"></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== КОРЗИНА ==================== -->
+  <div id="cart-overlay" class="fixed inset-0 bg-black/40 z-40 transition-opacity duration-300 opacity-0 pointer-events-none"></div>
+
+  <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full sm:w-[440px] bg-white z-50 shadow-2xl flex flex-col transition-transform duration-300 translate-x-full">
+    <div class="flex items-center justify-between px-5 sm:px-6 h-16 border-b border-gray-100 flex-shrink-0">
+      <h2 class="font-extrabold text-lg text-brand">Корзина</h2>
+      <button id="cart-close" aria-label="Закрыть корзину" class="text-gray-500 hover:bg-brand/10 hover:text-brand rounded-full p-2 transition">
+        <i data-lucide="x" style="width:20px;height:20px"></i>
+      </button>
+    </div>
+    <div class="flex-1 overflow-y-auto px-5 sm:px-6">
+      <div class="flex flex-col items-center justify-center text-center h-full py-16">
+        <i data-lucide="shopping-bag" class="text-brand opacity-40 mb-4" style="width:48px;height:48px;stroke-width:1.3"></i>
+        <h3 class="font-extrabold text-gray-700 mb-1.5">Ваша корзина пуста</h3>
+        <p class="text-gray-400 text-sm font-medium max-w-xs">Загляните в <a href="catalog.html" class="text-brand underline">каталог</a>, чтобы добавить товары</p>
+      </div>
+    </div>
+  </aside>
+
+  <div id="toast-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50"></div>
+
+  <script>
+    /* ============================================================
+       qqq care. — страница «Контакты»
+       Форма обратной связи работает локально (без backend):
+       после отправки просто показывается экран благодарности.
+       ============================================================ */
+
+    function openCart() {
+      document.getElementById('cart-overlay').classList.remove('opacity-0', 'pointer-events-none');
+      document.getElementById('cart-overlay').classList.add('opacity-100', 'pointer-events-auto');
+      document.getElementById('cart-drawer').classList.remove('translate-x-full');
+      document.getElementById('cart-drawer').classList.add('translate-x-0');
+      document.body.classList.add('overflow-hidden');
+    }
+    function closeCart() {
+      document.getElementById('cart-overlay').classList.add('opacity-0', 'pointer-events-none');
+      document.getElementById('cart-overlay').classList.remove('opacity-100', 'pointer-events-auto');
+      document.getElementById('cart-drawer').classList.add('translate-x-full');
+      document.getElementById('cart-drawer').classList.remove('translate-x-0');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('#cart-btn')) { openCart(); return; }
+      if (e.target.closest('#cart-close')) { closeCart(); return; }
+      if (e.target.id === 'cart-overlay') { closeCart(); return; }
+      if (e.target.closest('#menu-btn')) {
+        document.getElementById('mobile-nav').classList.toggle('hidden');
+        document.getElementById('mobile-nav').classList.toggle('flex');
+      }
+    });
+
+    document.addEventListener('submit', (e) => {
+      if (e.target.id === 'contact-form') {
+        e.preventDefault();
+        document.getElementById('contact-form-wrap').classList.add('hidden');
+        const success = document.getElementById('contact-success');
+        success.classList.remove('hidden');
+        success.classList.add('flex');
+        lucide.createIcons();
+      }
+    });
+
+    document.getElementById('footer-year').textContent = '© ' + new Date().getFullYear() + ' qqq care. Все права защищены.';
+    lucide.createIcons();
+  </script>
+</body>
+</html>

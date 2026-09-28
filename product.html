@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Товар — qqq care.</title>
+<meta name="description" content="Карточка товара qqq care." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { brand: '#0C5740' },
+        fontFamily: { sans: ['Nunito', 'sans-serif'] },
+      },
+    },
+  };
+</script>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito', sans-serif; }
+  .blob { pointer-events: none; position: absolute; border-radius: 9999px; filter: blur(70px); }
+  .blob-shape { border-radius: 62% 38% 55% 45% / 55% 45% 55% 45%; }
+  @keyframes bump { 0% { transform: scale(1); } 45% { transform: scale(1.4); } 100% { transform: scale(1); } }
+  .badge-bump { animation: bump .35s ease; }
+  @keyframes slideUp { from { transform: translate(-50%, 16px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+  .toast-anim { animation: slideUp .3s ease; }
+
+  /* Аккордеон на нативных <details> — без лишнего JS */
+  .accordion summary { list-style: none; cursor: pointer; }
+  .accordion summary::-webkit-details-marker { display: none; }
+  .accordion summary .chevron { transition: transform .25s ease; }
+  .accordion[open] summary .chevron { transform: rotate(90deg); }
+</style>
+</head>
+
+<body class="bg-white text-gray-800 antialiased">
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="sticky top-0 z-30 bg-white/85 backdrop-blur-md border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="index.html" class="text-2xl font-extrabold text-brand tracking-tight">qqq care.</a>
+
+      <nav class="hidden sm:flex items-center gap-8">
+        <a href="catalog.html" class="text-gray-600 hover:text-brand font-semibold text-sm transition">Каталог</a>
+        <a href="about.html" class="text-gray-600 hover:text-brand font-semibold text-sm transition">О нас</a>
+        <a href="contacts.html" class="text-gray-600 hover:text-brand font-semibold text-sm transition">Контакты</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button id="cart-btn" aria-label="Открыть корзину" class="relative text-gray-500 hover:bg-brand/10 hover:text-brand rounded-full p-2.5 transition">
+          <i data-lucide="shopping-bag" style="width:22px;height:22px"></i>
+          <span id="cart-badge" class="hidden absolute -top-1 -right-1 bg-brand text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+        </button>
+
+        <button id="menu-btn" aria-label="Открыть меню" class="sm:hidden text-gray-500 hover:bg-brand/10 hover:text-brand rounded-full p-2.5 transition">
+          <i data-lucide="menu" style="width:22px;height:22px"></i>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobile-nav" class="hidden sm:hidden flex-col gap-1 px-4 pb-4 border-t border-gray-100">
+      <a href="catalog.html" class="block text-gray-600 hover:text-brand font-semibold text-sm py-2.5 transition">Каталог</a>
+      <a href="about.html" class="block text-gray-600 hover:text-brand font-semibold text-sm py-2.5 transition">О нас</a>
+      <a href="contacts.html" class="block text-gray-600 hover:text-brand font-semibold text-sm py-2.5 transition">Контакты</a>
+    </nav>
+  </header>
+
+  <!-- ==================== ХЛЕБНЫЕ КРОШКИ ==================== -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav id="breadcrumb" class="flex flex-wrap items-center gap-1.5 text-xs sm:text-sm font-semibold text-gray-400"></nav>
+  </div>
+
+  <!-- ==================== КАРТОЧКА ТОВАРА ==================== -->
+  <section class="relative overflow-hidden">
+    <div class="blob bg-brand/10 w-80 h-80 -top-16 -left-24"></div>
+    <div id="product-root" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12"></div>
+  </section>
+
+  <!-- ==================== ПОХОЖИЕ ТОВАРЫ ==================== -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    <h2 class="text-2xl sm:text-3xl font-extrabold text-brand mb-6">Похожие товары</h2>
+    <div id="related-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6"></div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-brand text-white rounded-t-[2.5rem] mt-6">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 py-12 sm:py-14">
+      <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-8">
+        <div>
+          <p class="text-2xl font-extrabold mb-2">qqq care.</p>
+          <p class="text-sm italic text-white/70 font-medium">quirky qualitative quintessential</p>
+        </div>
+        <div class="flex flex-col gap-2 text-sm">
+          <a href="catalog.html" class="text-white/75 hover:text-white font-semibold transition">Каталог</a>
+          <a href="about.html" class="text-white/75 hover:text-white font-semibold transition">О нас</a>
+          <a href="contacts.html" class="text-white/75 hover:text-white font-semibold transition">Контакты</a>
+        </div>
+        <div class="flex flex-col gap-2 text-sm">
+          <span class="text-white/75 flex items-center gap-2 font-semibold"><i data-lucide="phone" style="width:15px;height:15px"></i> +7 (700) 000-00-00</span>
+          <span class="text-white/75 flex items-center gap-2 font-semibold"><i data-lucide="map-pin" style="width:15px;height:15px"></i> Алматы, Казахстан</span>
+          <span class="text-white/75 flex items-center gap-2 font-semibold"><i data-lucide="instagram" style="width:15px;height:15px"></i> @qqqcare</span>
+        </div>
+      </div>
+      <div class="border-t border-white/15 mt-10 pt-6 text-xs text-white/60 font-medium text-center sm:text-left">
+        <span id="footer-year"></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== КОРЗИНА ==================== -->
+  <div id="cart-overlay" class="fixed inset-0 bg-black/40 z-40 transition-opacity duration-300 opacity-0 pointer-events-none"></div>
+
+  <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full sm:w-[440px] bg-white z-50 shadow-2xl flex flex-col transition-transform duration-300 translate-x-full">
+    <div class="flex items-center justify-between px-5 sm:px-6 h-16 border-b border-gray-100 flex-shrink-0">
+      <h2 id="cart-title" class="font-extrabold text-lg text-brand">Корзина</h2>
+      <button id="cart-close" aria-label="Закрыть корзину" class="text-gray-500 hover:bg-brand/10 hover:text-brand rounded-full p-2 transition">
+        <i data-lucide="x" style="width:20px;height:20px"></i>
+      </button>
+    </div>
+    <div id="cart-body" class="flex-1 overflow-y-auto px-5 sm:px-6"></div>
+  </aside>
+
+  <div id="toast-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50"></div>
+
+  <script>
+    /* ============================================================
+       qqq care. — страница товара
+       Товар определяется по параметру ?id= в адресной строке.
+       Ванильный JavaScript, без сборки. Комментарии — на русском.
+       ============================================================ */
+
+    const ICONS = ['droplet', 'leaf', 'sparkles', 'sun', 'heart'];
+    const TINTS = ['bg-brand/5', 'bg-brand/8', 'bg-brand/12'];
+
+    const RAW_PRODUCTS = [
+      { id: 1, name: 'Тонер увлажняющий «Рисовое сияние»', category: 'Уход за лицом', price: 4900, volume: '150 мл',
+        description: 'Лёгкий тонер на основе ферментированной рисовой воды выравнивает тон и мгновенно увлажняет кожу перед нанесением остальных средств.',
+        features: ['Увлажняет и смягчает кожу', 'Подготавливает кожу к уходу'],
+        usage: 'Нанесите тонер на ватный диск или ладони и мягко распределите по лицу после очищения, утром и вечером.' },
+      { id: 2, name: 'Сыворотка с центеллой азиатской', category: 'Уход за лицом', price: 7200, volume: '30 мл',
+        description: 'Успокаивающая сыворотка с экстрактом центеллы снимает покраснения и укрепляет защитный барьер кожи.',
+        features: ['Успокаивает раздражённую кожу', 'Укрепляет защитный барьер'],
+        usage: 'Нанесите 2–3 капли на очищенную кожу лица и слегка вбейте подушечками пальцев перед кремом, утром и вечером.' },
+      { id: 3, name: 'Крем с муцином улитки', category: 'Уход за лицом', price: 6500, volume: '50 мл',
+        description: 'Восстанавливающий крем с муцином улитки ускоряет обновление кожи и разглаживает мелкие морщинки.',
+        features: ['Способствует регенерации кожи', 'Повышает эластичность'],
+        usage: 'Нанесите на очищенную кожу после сыворотки лёгкими массирующими движениями, утром и вечером.' },
+      { id: 4, name: 'Пенка для умывания с зелёным чаем', category: 'Уход за лицом', price: 3200, volume: '150 мл',
+        description: 'Мягкая пенка с антиоксидантами зелёного чая бережно очищает кожу, не пересушивая её.',
+        features: ['Глубоко очищает поры', 'Не нарушает pH кожи'],
+        usage: 'Вспеньте с водой и нанесите на влажное лицо массирующими движениями, затем смойте тёплой водой.' },
+      { id: 5, name: 'Эссенция с ниацинамидом', category: 'Уход за лицом', price: 8100, volume: '100 мл',
+        description: 'Эссенция с ниацинамидом выравнивает тон кожи и уменьшает видимость пор.',
+        features: ['Выравнивает тон кожи', 'Сужает поры'],
+        usage: 'Нанесите после тонера, слегка похлопывающими движениями вбейте в кожу лица и шеи.' },
+      { id: 6, name: 'Ночная маска с гиалуроновой кислотой', category: 'Уход за лицом', price: 5400, volume: '80 мл',
+        description: 'Ночная маска с гиалуроновой кислотой обеспечивает глубокое увлажнение кожи во время сна.',
+        features: ['Интенсивное увлажнение', 'Разглаживает кожу к утру'],
+        usage: 'Нанесите толстым слоем как финальный этап вечернего ухода, оставьте на ночь и утром умойтесь тёплой водой.' },
+      { id: 7, name: 'Крем для глаз с женьшенем', category: 'Уход за лицом', price: 6900, volume: '30 мл',
+        description: 'Крем для контура глаз с экстрактом женьшеня уменьшает отёчность и тёмные круги.',
+        features: ['Уменьшает отёчность', 'Разглаживает тонкую кожу век'],
+        usage: 'Небольшое количество крема нанесите безымянным пальцем на область под глазами похлопывающими движениями.' },
+      { id: 8, name: 'Солнцезащитный крем SPF50+', category: 'Уход за лицом', price: 4700, volume: '50 мл',
+        description: 'Лёгкий солнцезащитный крем SPF50+ защищает кожу от UVA/UVB-лучей, не оставляя белого налёта.',
+        features: ['Защита SPF50+ PA++++', 'Лёгкая нежирная текстура'],
+        usage: 'Наносите как последний шаг утреннего ухода за 20 минут до выхода на солнце, обновляйте каждые 2–3 часа.' },
+      { id: 9, name: 'Патчи для глаз с коллагеном', category: 'Уход за лицом', price: 3900, volume: '60 шт',
+        description: 'Гидрогелевые патчи с коллагеном мгновенно освежают взгляд и подтягивают контур глаз.',
+        features: ['Мгновенный эффект свежести', 'Подтягивает контур глаз'],
+        usage: 'Наложите на очищенную область под глазами на 15–20 минут, затем снимите и вбейте остаток средства.' },
+      { id: 10, name: 'Увлажняющий мист с алоэ', category: 'Уход за лицом', price: 3500, volume: '100 мл',
+        description: 'Освежающий мист с алоэ увлажняет кожу в течение дня и фиксирует макияж.',
+        features: ['Освежает в течение дня', 'Фиксирует макияж'],
+        usage: 'Распылите на расстоянии 20–25 см от лица в любое время, когда коже необходимо увлажнение.' },
+      { id: 11, name: 'Тканевая маска с авокадо', category: 'Уход за лицом', price: 1200, volume: '25 мл',
+        description: 'Тканевая маска с маслом авокадо питает и смягчает кожу за 15 минут.',
+        features: ['Питает сухую кожу', 'Восстанавливает мягкость'],
+        usage: 'Расположите на лице на 15–20 минут, затем снимите и вбейте остаток эссенции.' },
+      { id: 12, name: 'Пилинг-скатка с папайей', category: 'Уход за лицом', price: 4300, volume: '100 мл',
+        description: 'Мягкий пилинг-скатка с энзимами папайи деликатно удаляет ороговевшие частицы кожи.',
+        features: ['Мягко отшелушивает кожу', 'Выравнивает текстуру'],
+        usage: 'Нанесите на сухую кожу, помассируйте до образования скаток, смойте водой. Используйте 1–2 раза в неделю.' },
+      { id: 13, name: 'Бальзам для губ с маслом ши', category: 'Уход за лицом', price: 2100, volume: '15 г',
+        description: 'Питательный бальзам с маслом ши восстанавливает сухие и обветренные губы.',
+        features: ['Питает и смягчает губы', 'Защищает от сухости'],
+        usage: 'Наносите на губы по мере необходимости в течение дня.' },
+      { id: 14, name: 'BB-кушон с SPF', category: 'Макияж', price: 8900, volume: '15 г',
+        description: 'BB-кушон с SPF выравнивает тон лица и обеспечивает лёгкое естественное покрытие.',
+        features: ['Естественное покрытие', 'Защита SPF'],
+        usage: 'Нанесите спонжем от центра лица к краям, при необходимости добавьте слой для большей плотности.' },
+      { id: 15, name: 'Кремовые румяна «Персик»', category: 'Макияж', price: 5200, volume: '5 г',
+        description: 'Кремовые румяна с персиковым оттенком дарят коже естественный румянец.',
+        features: ['Естественный сияющий финиш', 'Легко растушёвываются'],
+        usage: 'Нанесите на яблочки щёк подушечками пальцев и растушуйте.' },
+      { id: 16, name: 'Масло для лица с камелией', category: 'Уход за лицом', price: 7600, volume: '30 мл',
+        description: 'Сухое масло камелии питает кожу и придаёт ей здоровое сияние.',
+        features: ['Питает и смягчает кожу', 'Придаёт сияние'],
+        usage: 'Нанесите 2–3 капли на ладони, слегка разотрите и вбейте в кожу лица как финальный этап ухода.' },
+      { id: 17, name: 'Скраб для тела с кофе', category: 'Уход за телом', price: 4100, volume: '200 мл',
+        description: 'Скраб для тела с кофе тонизирует кожу и улучшает её текстуру.',
+        features: ['Отшелушивает и тонизирует', 'Улучшает текстуру кожи'],
+        usage: 'Нанесите на влажную кожу тела, помассируйте круговыми движениями и смойте водой.' },
+      { id: 18, name: 'Укрепляющий шампунь с биотином', category: 'Уход за волосами', price: 5800, volume: '300 мл',
+        description: 'Шампунь с биотином укрепляет волосы от корней и придаёт им объём.',
+        features: ['Укрепляет волосы', 'Придаёт объём'],
+        usage: 'Нанесите на влажные волосы, вспеньте, оставьте на 1–2 минуты и смойте водой.' },
+      { id: 19, name: 'Крем-баттер для тела с маслом ши', category: 'Уход за телом', price: 4600, volume: '200 мл',
+        description: 'Насыщенный крем-баттер с маслом ши глубоко питает сухую кожу тела.',
+        features: ['Глубокое питание кожи', 'Долговременное увлажнение'],
+        usage: 'Нанесите на кожу тела после душа лёгкими массирующими движениями до полного впитывания.' },
+      { id: 20, name: 'Гидрогелевые патчи под глаза', category: 'Уход за лицом', price: 3700, volume: '60 шт',
+        description: 'Гидрогелевые патчи мгновенно увлажняют и освежают область под глазами.',
+        features: ['Увлажняет тонкую кожу', 'Снимает усталость взгляда'],
+        usage: 'Наложите на очищенную область под глазами на 15–20 минут, затем снимите и слегка вбейте остаток средства.' },
+    ];
+
+    const PRODUCTS = RAW_PRODUCTS.map((p, i) => ({
+      ...p,
+      icon: ICONS[i % ICONS.length],
+      tint: TINTS[i % TINTS.length],
+    }));
+
+    // ---------- Состояние ----------
+    let cart = [];
+    let orderSuccess = false;
+    let toastTimer = null;
+    let selectedQty = 1;
+
+    // ---------- Определяем товар по ?id= ----------
+    const params = new URLSearchParams(window.location.search);
+    const requestedId = Number(params.get('id'));
+    const currentProduct = PRODUCTS.find((p) => p.id === requestedId) || PRODUCTS[0];
+
+    // ---------- Вспомогательные функции ----------
+    function formatPrice(v) { return v.toLocaleString('ru-RU') + ' ₸'; }
+    function pluralizeRu(n, forms) {
+      const mod10 = n % 10, mod100 = n % 100;
+      if (mod10 === 1 && mod100 !== 11) return forms[0];
+      if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return forms[1];
+      return forms[2];
+    }
+    function totalItems() { return cart.reduce((s, i) => s + i.qty, 0); }
+    function totalPrice() { return cart.reduce((s, i) => s + i.qty * i.price, 0); }
+    function findCartItem(id) { return cart.find((i) => i.id === id); }
+
+    // ---------- Хлебные крошки ----------
+    function renderBreadcrumb() {
+      document.getElementById('breadcrumb').innerHTML = `
+        <a href="index.html" class="hover:text-brand transition">Главная</a>
+        <i data-lucide="chevron-right" style="width:14px;height:14px"></i>
+        <a href="catalog.html" class="hover:text-brand transition">Каталог</a>
+        <i data-lucide="chevron-right" style="width:14px;height:14px"></i>
+        <span class="text-brand">${currentProduct.name}</span>`;
+    }
+
+    // ---------- Карточка товара ----------
+    function renderProduct() {
+      const p = currentProduct;
+      document.title = p.name + ' — qqq care.';
+
+      document.getElementById('product-root').innerHTML = `
+        <div class="grid md:grid-cols-2 gap-10 items-start">
+          <div class="blob-shape ${p.tint} aspect-square rounded-3xl flex items-center justify-center relative">
+            <span class="absolute top-5 left-5 bg-white/90 backdrop-blur px-3 py-1.5 rounded-full text-xs font-bold text-brand shadow-sm">${p.category}</span>
+            <i data-lucide="${p.icon}" class="text-brand opacity-80" style="width:120px;height:120px;stroke-width:1"></i>
+          </div>
+
+          <div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-brand leading-snug mb-3">${p.name}</h1>
+
+            <div class="flex items-baseline gap-3 mb-5">
+              <span class="text-2xl sm:text-3xl font-extrabold text-gray-900">${formatPrice(p.price)}</span>
+              <span class="text-sm font-semibold text-gray-400">объём ${p.volume}</span>
+            </div>
+
+            <p class="text-gray-600 font-medium mb-5">${p.description}</p>
+
+            <ul class="flex flex-col gap-2 mb-6">
+              ${p.features.map((f) => `
+                <li class="flex items-center gap-2 text-sm font-semibold text-gray-700">
+                  <i data-lucide="check-circle-2" class="text-brand flex-shrink-0" style="width:18px;height:18px"></i>
+                  ${f}
+                </li>`).join('')}
+            </ul>
+
+            <div class="flex items-center gap-3 mb-6">
+              <div class="flex items-center gap-3 border-[1.5px] border-gray-200 rounded-full px-2 py-1.5">
+                <button id="qty-dec" class="text-gray-500 hover:bg-brand/10 hover:text-brand rounded-full p-1.5 transition"><i data-lucide="minus" style="width:16px;height:16px"></i></button>
+                <span id="qty-value" class="font-extrabold w-5 text-center">${selectedQty}</span>
+                <button id="qty-inc" class="text-gray-500 hover:bg-brand/10 hover:text-brand rounded-full p-1.5 transition"><i data-lucide="plus" style="width:16px;height:16px"></i></button>
+              </div>
+
+              <button id="add-to-cart-btn" class="flex-1 bg-brand text-white py-3.5 rounded-full font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition">
+                <i data-lucide="shopping-bag" style="width:18px;height:18px"></i>
+                В корзину
+              </button>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 mb-8">
+              <div class="flex flex-col items-center text-center gap-1.5 bg-brand/5 rounded-2xl py-3 px-2">
+                <i data-lucide="truck" class="text-brand" style="width:20px;height:20px"></i>
+                <span class="text-[11px] font-bold text-gray-600 leading-tight">Доставка за 1–2 дня</span>
+              </div>
+              <div class="flex flex-col items-center text-center gap-1.5 bg-brand/5 rounded-2xl py-3 px-2">
+                <i data-lucide="shield-check" class="text-brand" style="width:20px;height:20px"></i>
+                <span class="text-[11px] font-bold text-gray-600 leading-tight">Оригинальный товар</span>
+              </div>
+              <div class="flex flex-col items-center text-center gap-1.5 bg-brand/5 rounded-2xl py-3 px-2">
+                <i data-lucide="credit-card" class="text-brand" style="width:20px;height:20px"></i>
+                <span class="text-[11px] font-bold text-gray-600 leading-tight">Оплата картой / наличными</span>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <details class="accordion border-b border-gray-100 py-3" open>
+                <summary class="flex items-center justify-between font-bold text-brand text-sm">
+                  Описание
+                  <i data-lucide="chevron-right" class="chevron" style="width:16px;height:16px"></i>
+                </summary>
+                <p class="text-gray-600 text-sm font-medium mt-3">${p.description}</p>
+              </details>
+
+              <details class="accordion border-b border-gray-100 py-3">
+                <summary class="flex items-center justify-between font-bold text-brand text-sm">
+                  Способ применения
+                  <i data-lucide="chevron-right" class="chevron" style="width:16px;height:16px"></i>
+                </summary>
+                <p class="text-gray-600 text-sm font-medium mt-3">${p.usage}</p>
+              </details>
+
+              <details class="accordion border-b border-gray-100 py-3">
+                <summary class="flex items-center justify-between font-bold text-brand text-sm">
+                  Доставка и оплата
+                  <i data-lucide="chevron-right" class="chevron" style="width:16px;height:16px"></i>
+                </summary>
+                <p class="text-gray-600 text-sm font-medium mt-3">Доставка по Алматы — 1–2 рабочих дня, по Казахстану — 2–5 дней. Оплата картой онлайн или наличными курьеру при получении.</p>
+              </details>
+            </div>
+          </div>
+        </div>`;
+
+      lucide.createIcons();
+    }
+
+    // ---------- Похожие товары ----------
+    function renderRelated() {
+      const related = PRODUCTS
+        .filter((p) => p.id !== currentProduct.id && p.category === currentProduct.category)
+        .slice(0, 4);
+
+      const fallback = PRODUCTS.filter((p) => p.id !== currentProduct.id && !related.includes(p)).slice(0, 4 - related.length);
+      const list = [...related, ...fallback].slice(0, 4);
+
+      document.getElementById('related-grid').innerHTML = list.map((p) => `
+        <div class="bg-white rounded-3xl p-3.5 sm:p-4 shadow-sm hover:shadow-xl border border-gray-100 flex flex-col transition-all duration-300 hover:-translate-y-1">
+          <a href="product.html?id=${p.id}" class="block">
+            <div class="relative aspect-square rounded-2xl ${p.tint} flex items-center justify-center overflow-hidden">
+              <i data-lucide="${p.icon}" class="text-brand opacity-80" style="width:40px;height:40px;stroke-width:1.3"></i>
+            </div>
+            <h3 class="font-extrabold text-brand text-xs sm:text-sm mt-3 leading-snug hover:underline">${p.name}</h3>
+          </a>
+          <div class="flex items-center justify-between mt-2">
+            <span class="font-extrabold text-gray-900 text-xs sm:text-sm">${formatPrice(p.price)}</span>
+          </div>
+          <button data-action="add" data-id="${p.id}" class="bg-brand text-white mt-2.5 w-full py-2 rounded-full font-bold text-xs flex items-center justify-center gap-1.5 hover:opacity-90 active:scale-95 transition">
+            <i data-lucide="shopping-bag" style="width:13px;height:13px"></i>
+            В корзину
+          </button>
+        </div>`).join('');
+
+      lucide.createIcons();
+    }
+
+    // ---------- Корзина ----------
+    function addToCart(id, qty) {
+      const product = PRODUCTS.find((p) => p.id === id);
+      const existing = findCartItem(id);
+      if (existing) existing.qty += qty;
+      else cart.push({ ...product, qty });
+      bumpBadge();
+      showToast(`«${product.name}» добавлен в корзину`);
+      renderCartBody();
+      renderBadge();
+    }
+    function incCartQty(id) { findCartItem(id).qty += 1; renderCartBody(); renderBadge(); }
+    function decCartQty(id) {
+      const item = findCartItem(id);
+      item.qty -= 1;
+      if (item.qty <= 0) cart = cart.filter((i) => i.id !== id);
+      renderCartBody(); renderBadge();
+    }
+    function removeCartItem(id) { cart = cart.filter((i) => i.id !== id); renderCartBody(); renderBadge(); }
+
+    function renderBadge() {
+      const badge = document.getElementById('cart-badge');
+      const count = totalItems();
+      if (count > 0) { badge.textContent = count; badge.classList.remove('hidden'); }
+      else badge.classList.add('hidden');
+    }
+    function bumpBadge() {
+      const badge = document.getElementById('cart-badge');
+      badge.classList.remove('badge-bump');
+      void badge.offsetWidth;
+      badge.classList.add('badge-bump');
+    }
+
+    function renderCartBody() {
+      const body = document.getElementById('cart-body');
+      const title = document.getElementById('cart-title');
+      const count = totalItems();
+      title.textContent = count > 0 ? `Корзина · ${count} ${pluralizeRu(count, ['товар', 'товара', 'товаров'])}` : 'Корзина';
+
+      if (orderSuccess) {
+        body.innerHTML = `
+          <div class="flex flex-col items-center justify-center text-center h-full py-16">
+            <i data-lucide="check-circle-2" class="text-brand mb-4" style="width:56px;height:56px;stroke-width:1.4"></i>
+            <h3 class="font-extrabold text-brand text-lg mb-2">Заказ оформлен!</h3>
+            <p class="text-gray-500 text-sm font-medium max-w-xs mb-6">Наш менеджер свяжется с вами в течение 15 минут, чтобы подтвердить заказ и уточнить детали доставки.</p>
+            <button id="continue-shopping" class="bg-white text-brand border-[1.5px] border-brand px-6 py-2.5 rounded-full font-bold text-sm hover:bg-brand/5 transition">Продолжить покупки</button>
+          </div>`;
+      } else if (cart.length === 0) {
+        body.innerHTML = `
+          <div class="flex flex-col items-center justify-center text-center h-full py-16">
+            <i data-lucide="shopping-bag" class="text-brand opacity-40 mb-4" style="width:48px;height:48px;stroke-width:1.3"></i>
+            <h3 class="font-extrabold text-gray-700 mb-1.5">Ваша корзина пуста</h3>
+            <p class="text-gray-400 text-sm font-medium max-w-xs">Добавьте товары из каталога, чтобы оформить заказ</p>
+          </div>`;
+      } else {
+        const itemsHTML = cart.map((item) => `
+          <li class="flex items-center gap-3 py-3.5 border-b border-gray-100">
+            <div class="w-16 h-16 rounded-2xl ${item.tint} flex items-center justify-center flex-shrink-0">
+              <i data-lucide="${item.icon}" class="text-brand" style="width:24px;height:24px;stroke-width:1.4"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="font-bold text-brand text-sm leading-snug truncate">${item.name}</p>
+              <p class="text-gray-400 text-xs font-semibold mt-0.5">${formatPrice(item.price)}</p>
+              <div class="flex items-center gap-2 mt-2 border border-gray-200 rounded-full w-fit px-1">
+                <button data-action="dec" data-id="${item.id}" class="text-gray-500 hover:bg-brand/10 hover:text-brand rounded-full p-1 transition"><i data-lucide="minus" style="width:14px;height:14px"></i></button>
+                <span class="text-xs font-extrabold w-4 text-center">${item.qty}</span>
+                <button data-action="inc" data-id="${item.id}" class="text-gray-500 hover:bg-brand/10 hover:text-brand rounded-full p-1 transition"><i data-lucide="plus" style="width:14px;height:14px"></i></button>
+              </div>
+            </div>
+            <button data-action="remove" data-id="${item.id}" class="text-gray-400 hover:text-red-500 rounded-full p-2 self-start transition"><i data-lucide="trash-2" style="width:16px;height:16px"></i></button>
+          </li>`).join('');
+
+        body.innerHTML = `
+          <ul class="py-2">${itemsHTML}</ul>
+          <div class="flex items-center justify-between py-4">
+            <span class="font-bold text-gray-500">Итого</span>
+            <span class="font-extrabold text-brand text-xl">${formatPrice(totalPrice())}</span>
+          </div>
+          <div class="border-t border-gray-100 pt-5 pb-8">
+            <h3 class="font-extrabold text-brand mb-4">Оформление заказа</h3>
+            <form id="order-form" class="flex flex-col gap-3">
+              <label class="block">
+                <span class="text-xs font-bold text-gray-500 mb-1.5 block">Имя</span>
+                <div class="relative">
+                  <i data-lucide="user" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" style="width:16px;height:16px"></i>
+                  <input required type="text" name="name" placeholder="Например, Айгерим" class="w-full rounded-2xl border-[1.5px] border-gray-200 pl-10 pr-4 py-3 text-sm font-medium outline-none focus:border-brand transition" />
+                </div>
+              </label>
+              <label class="block">
+                <span class="text-xs font-bold text-gray-500 mb-1.5 block">Номер телефона</span>
+                <div class="relative">
+                  <i data-lucide="phone" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" style="width:16px;height:16px"></i>
+                  <input required type="tel" name="phone" placeholder="+7 (___) ___-__-__" class="w-full rounded-2xl border-[1.5px] border-gray-200 pl-10 pr-4 py-3 text-sm font-medium outline-none focus:border-brand transition" />
+                </div>
+              </label>
+              <label class="block">
+                <span class="text-xs font-bold text-gray-500 mb-1.5 block">Адрес доставки</span>
+                <div class="relative">
+                  <i data-lucide="map-pin" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" style="width:16px;height:16px"></i>
+                  <input required type="text" name="address" placeholder="Город, улица, дом, квартира" class="w-full rounded-2xl border-[1.5px] border-gray-200 pl-10 pr-4 py-3 text-sm font-medium outline-none focus:border-brand transition" />
+                </div>
+              </label>
+              <button type="submit" class="bg-brand text-white w-full py-3.5 rounded-full font-extrabold text-sm mt-2 hover:opacity-90 active:scale-95 transition">Оформить заказ</button>
+            </form>
+          </div>`;
+      }
+      lucide.createIcons();
+    }
+
+    function openCart() {
+      document.getElementById('cart-overlay').classList.remove('opacity-0', 'pointer-events-none');
+      document.getElementById('cart-overlay').classList.add('opacity-100', 'pointer-events-auto');
+      document.getElementById('cart-drawer').classList.remove('translate-x-full');
+      document.getElementById('cart-drawer').classList.add('translate-x-0');
+      document.body.classList.add('overflow-hidden');
+    }
+    function closeCart() {
+      document.getElementById('cart-overlay').classList.add('opacity-0', 'pointer-events-none');
+      document.getElementById('cart-overlay').classList.remove('opacity-100', 'pointer-events-auto');
+      document.getElementById('cart-drawer').classList.add('translate-x-full');
+      document.getElementById('cart-drawer').classList.remove('translate-x-0');
+      document.body.classList.remove('overflow-hidden');
+      setTimeout(() => { orderSuccess = false; renderCartBody(); }, 300);
+    }
+
+    function showToast(text) {
+      const container = document.getElementById('toast-container');
+      container.innerHTML = `
+        <div class="bg-brand text-white flex items-center gap-2 px-5 py-3 rounded-full shadow-2xl text-sm font-bold whitespace-nowrap toast-anim">
+          <i data-lucide="check-circle-2" style="width:17px;height:17px"></i>
+          ${text}
+        </div>`;
+      lucide.createIcons();
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => { container.innerHTML = ''; }, 2200);
+    }
+
+    // ---------- События ----------
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('#qty-inc')) {
+        selectedQty += 1;
+        document.getElementById('qty-value').textContent = selectedQty;
+        return;
+      }
+      if (e.target.closest('#qty-dec')) {
+        selectedQty = Math.max(1, selectedQty - 1);
+        document.getElementById('qty-value').textContent = selectedQty;
+        return;
+      }
+      if (e.target.closest('#add-to-cart-btn')) {
+        addToCart(currentProduct.id, selectedQty);
+        selectedQty = 1;
+        document.getElementById('qty-value').textContent = selectedQty;
+        return;
+      }
+
+      const actionBtn = e.target.closest('[data-action]');
+      if (actionBtn) {
+        const id = Number(actionBtn.dataset.id);
+        const action = actionBtn.dataset.action;
+        if (action === 'add') addToCart(id, 1);
+        if (action === 'inc') incCartQty(id);
+        if (action === 'dec') decCartQty(id);
+        if (action === 'remove') removeCartItem(id);
+        return;
+      }
+
+      if (e.target.closest('#cart-btn')) { openCart(); return; }
+      if (e.target.closest('#cart-close')) { closeCart(); return; }
+      if (e.target.id === 'cart-overlay') { closeCart(); return; }
+      if (e.target.closest('#continue-shopping')) { closeCart(); return; }
+
+      if (e.target.closest('#menu-btn')) {
+        document.getElementById('mobile-nav').classList.toggle('hidden');
+        document.getElementById('mobile-nav').classList.toggle('flex');
+      }
+    });
+
+    document.addEventListener('submit', (e) => {
+      if (e.target.id === 'order-form') {
+        e.preventDefault();
+        if (cart.length === 0) return;
+        orderSuccess = true;
+        cart = [];
+        renderCartBody();
+        renderBadge();
+      }
+    });
+
+    // ---------- Инициализация ----------
+    document.getElementById('footer-year').textContent = '© ' + new Date().getFullYear() + ' qqq care. Все права защищены.';
+    renderBreadcrumb();
+    renderProduct();
+    renderRelated();
+    renderCartBody();
+    renderBadge();
+  </script>
+</body>
+</html>

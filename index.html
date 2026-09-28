@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QQQ CARE — премиальная корейская косметика | Ваш ритуал сияния</title>
+  <meta name="description" content="QQQ CARE — откройте для себя философию идеальной кожи. Премиальная корейская косметика с доказанной эффективностью: центелла, муцин улитки, рисовые ферменты. Заказ через WhatsApp.">
+  <!-- Шрифт Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brand: '#0C5740', 'brand-light': '#1a7a5a' },
+          fontFamily: { sans: ['Nunito', 'sans-serif'] },
+          boxShadow: { 'soft': '0 20px 40px -15px rgba(0, 0, 0, 0.1)' },
+        },
+      },
+    };
+  </script>
+  <!-- Иконки Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; }
+    .blob { pointer-events: none; position: absolute; border-radius: 9999px; filter: blur(70px); }
+    /* Органическая форма — отсылка к логотипу и косметическим текстурам */
+    .organic-shape { border-radius: 62% 38% 45% 55% / 50% 60% 40% 50%; }
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(15px, -20px); }
+    }
+    .drift { animation: drift 8s ease-in-out infinite; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .float-slow { animation: float 5s ease-in-out infinite; }
+    @keyframes slideUp {
+      from { transform: translate(-50%, 20px); opacity: 0; }
+      to { transform: translate(-50%, 0); opacity: 1; }
+    }
+    .toast-anim { animation: slideUp .3s ease; }
+    /* Бегущая строка преимуществ — бесшовная прокрутка */
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee { animation: marquee 22s linear infinite; width: max-content; }
+    /* Скрыть скроллбар, но оставить прокрутку */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+
+<body class="bg-white text-gray-800 antialiased selection:bg-brand/20 selection:text-brand">
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-2 group">
+        <span class="text-3xl font-black text-brand tracking-tight">qqq</span>
+        <span class="bg-brand/10 text-brand px-2 py-1 rounded-full text-lg font-extrabold">care.</span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="#catalog" class="text-gray-600 hover:text-brand font-semibold text-sm transition relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand hover:after:w-full after:transition-all">Каталог</a>
+        <a href="#news" class="text-gray-600 hover:text-brand font-semibold text-sm transition relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand hover:after:w-full after:transition-all">Новости</a>
+        <a href="#partners" class="text-gray-600 hover:text-brand font-semibold text-sm transition relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand hover:after:w-full after:transition-all">Партнерам</a>
+        <a href="#about" class="text-gray-600 hover:text-brand font-semibold text-sm transition relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand hover:after:w-full after:transition-all">О бренде</a>
+      </nav>
+      <div class="hidden lg:flex items-center gap-4">
+        <a href="#" aria-label="Instagram" class="text-gray-500 hover:text-brand transition"><i data-lucide="instagram" style="width:20px;height:20px"></i></a>
+        <a href="#" aria-label="Telegram" class="text-gray-500 hover:text-brand transition"><i data-lucide="send" style="width:20px;height:20px"></i></a>
+        <a href="https://wa.me/77000000000" target="_blank" class="bg-brand text-white px-5 py-2.5 rounded-full font-bold text-xs flex items-center gap-2 hover:bg-brand-light transition shadow-md">
+          <i data-lucide="message-circle" style="width:16px;height:16px"></i> WhatsApp
+        </a>
+      </div>
+      <button id="menu-btn" aria-label="Открыть меню" class="lg:hidden text-gray-600 hover:bg-brand/10 hover:text-brand rounded-full p-2.5 transition">
+        <i data-lucide="menu" style="width:24px;height:24px"></i>
+      </button>
+    </div>
+    <div id="mobile-nav" class="hidden lg:hidden flex-col px-4 pb-5 border-t border-gray-100 bg-white">
+      <a href="#catalog" class="block text-gray-700 hover:text-brand font-semibold py-3 transition">Каталог</a>
+      <a href="#news" class="block text-gray-700 hover:text-brand font-semibold py-3 transition">Новости</a>
+      <a href="#partners" class="block text-gray-700 hover:text-brand font-semibold py-3 transition">Партнерам</a>
+      <a href="#about" class="block text-gray-700 hover:text-brand font-semibold py-3 transition">О бренде</a>
+      <a href="https://wa.me/77000000000" target="_blank" class="mt-2 bg-brand text-white px-5 py-3 rounded-full font-bold text-center flex items-center justify-center gap-2"><i data-lucide="message-circle" style="width:18px;height:18px"></i> Написать в WhatsApp</a>
+    </div>
+  </header>
+
+  <!-- ==================== HERO ==================== -->
+  <section id="top" class="relative overflow-hidden bg-gradient-to-b from-white to-brand/5">
+    <div class="blob bg-brand/10 w-96 h-96 -top-20 -left-20 drift"></div>
+    <div class="blob bg-brand/15 w-80 h-80 top-40 right-0 drift" style="animation-delay:1.5s"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full text-xs font-bold text-brand shadow-sm mb-6 border border-brand/10">
+          <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span> Официальный магазин премиальной корейской косметики
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-brand leading-[1.1] mb-6 tracking-tight">
+          Преобрази свою кожу.<br>
+          <span class="text-gray-900">Почувствуй силу<br>Косметики qqq care.</span>
+        </h1>
+        <p class="text-lg text-gray-600 mb-8 max-w-lg font-medium leading-relaxed">
+          Мгновенное увлажнение, сияние и упругость без инъекций. Формулы с центеллой, муцином улитки и ферментами риса, созданные для твоей идеальной кожи. Забудь о тусклости — начни свой ритуал красоты уже сегодня.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#catalog" class="group inline-flex items-center gap-2 bg-brand text-white font-bold px-8 py-4 rounded-full shadow-xl hover:bg-brand-light transition-all transform hover:scale-105">
+            Выбрать уход
+            <i data-lucide="arrow-right" class="group-hover:translate-x-1 transition" style="width:18px;height:18px"></i>
+          </a>
+          <a href="#about" class="inline-flex items-center gap-2 bg-white text-brand font-bold px-8 py-4 rounded-full border-2 border-brand/20 hover:bg-brand/5 transition">
+            О бренде
+          </a>
+        </div>
+        <div class="flex items-center gap-8 mt-10">
+          <div><span class="font-black text-2xl text-brand">50k+</span><p class="text-xs text-gray-500 font-semibold">довольных клиентов</p></div>
+          <div class="h-8 w-px bg-gray-300"></div>
+          <div><span class="font-black text-2xl text-brand">100%</span><p class="text-xs text-gray-500 font-semibold">натуральные экстракты</p></div>
+          <div class="h-8 w-px bg-gray-300"></div>
+          <div><span class="font-black text-2xl text-brand">24/7</span><p class="text-xs text-gray-500 font-semibold">заказ в WhatsApp</p></div>
+        </div>
+      </div>
+      <!-- Визуальная композиция справа: фото товара + декоративный блоб + плавающие бейджи -->
+      <div class="relative hidden md:flex items-center justify-center">
+        <div class="organic-shape bg-brand/10 w-96 h-96 lg:w-[480px] lg:h-[480px] drift shadow-2xl"></div>
+        <img src="img/hero.png" alt="Линейка косметики qqq care." class="absolute inset-0 m-auto w-[80%] max-w-sm lg:max-w-md object-contain drop-shadow-2xl z-10">
+        <div class="absolute top-10 -right-4 bg-white p-3 rounded-2xl shadow-xl rotate-6 flex items-center gap-2 animate-bounce z-20">
+          <span class="text-2xl">🌿</span><span class="text-xs font-bold">Центелла</span>
+        </div>
+        <div class="absolute bottom-14 -left-6 bg-white p-3 rounded-2xl shadow-xl -rotate-3 flex items-center gap-2 animate-bounce delay-200 z-20">
+          <span class="text-2xl">✨</span><span class="text-xs font-bold">Glass Skin</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== БЕГУЩАЯ СТРОКА ==================== -->
+  <div class="bg-brand py-4 overflow-hidden whitespace-nowrap">
+    <div class="flex gap-8 animate-marquee">
+      <span class="text-white font-bold uppercase tracking-wider text-sm mx-4">✦ Премиальные ингредиенты</span>
+      <span class="text-white font-bold uppercase tracking-wider text-sm mx-4">✧ Без парабенов</span>
+      <span class="text-white font-bold uppercase tracking-wider text-sm mx-4">✦ Корейская технология</span>
+      <span class="text-white font-bold uppercase tracking-wider text-sm mx-4">✧ Подходит для чувствительной кожи</span>
+      <span class="text-white font-bold uppercase tracking-wider text-sm mx-4">✦ Доставка по Казахстану</span>
+      <span class="text-white font-bold uppercase tracking-wider text-sm mx-4">✦ Премиальные ингредиенты</span>
+      <span class="text-white font-bold uppercase tracking-wider text-sm mx-4">✧ Без парабенов</span>
+      <span class="text-white font-bold uppercase tracking-wider text-sm mx-4">✦ Корейская технология</span>
+      <span class="text-white font-bold uppercase tracking-wider text-sm mx-4">✧ Подходит для чувствительной кожи</span>
+      <span class="text-white font-bold uppercase tracking-wider text-sm mx-4">✦ Доставка по Казахстану</span>
+    </div>
+  </div>
+
+  <!-- ==================== КАТАЛОГ ==================== -->
+  <section id="catalog" class="relative py-20 sm:py-24 overflow-hidden scroll-mt-20">
+    <div class="blob bg-brand/10 w-[500px] h-[500px] top-1/3 -right-40"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-14 text-center">
+        <span class="text-brand font-bold text-sm tracking-widest uppercase">Коллекция</span>
+        <h2 class="text-3xl sm:text-5xl font-black text-gray-900 mt-3 mb-4">Наши бестселлеры</h2>
+        <p class="text-gray-500 font-medium max-w-2xl mx-auto text-lg">Выбери свой идеальный уход. Каждое средство — концентрат пользы, созданный для результата, который ты увидишь в зеркале.</p>
+      </div>
+      <div id="catalog-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6"></div>
+
+      <div class="text-center mt-12">
+        <a href="catalog.html" class="inline-flex items-center gap-2 text-brand font-bold hover:gap-3 transition-all">
+          Смотреть весь каталог
+          <i data-lucide="arrow-right" style="width:16px;height:16px"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== НОВОСТИ (БЛОГ) ==================== -->
+  <section id="news" class="relative py-20 sm:py-24 bg-brand/5 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-14 text-center">
+        <span class="text-brand font-bold text-sm tracking-widest uppercase">Блог</span>
+        <h2 class="text-3xl sm:text-5xl font-black text-gray-900 mt-3 mb-4">Советы по уходу</h2>
+        <p class="text-gray-500 font-medium max-w-2xl mx-auto text-lg">Учим правильно заботиться о коже и разбираем корейские тренды.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <article class="bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-xl transition-all group">
+          <div class="h-52 bg-gradient-to-br from-brand/20 to-brand/5 flex items-center justify-center relative overflow-hidden">
+            <i data-lucide="droplets" class="text-brand group-hover:scale-110 transition-transform" style="width:56px;height:56px;stroke-width:1.2"></i>
+            <span class="absolute top-3 left-3 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-brand">Уход</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-extrabold text-xl text-brand mb-2">Секреты «стеклянной кожи»</h3>
+            <p class="text-gray-500 text-sm font-medium mb-4">Как добиться эффекта glass skin с помощью правильного наслоения средств и тонера с рисовой водой.</p>
+            <a href="#" class="inline-flex items-center gap-1 text-brand font-bold text-sm hover:gap-2 transition-all">Читать <i data-lucide="chevron-right" style="width:14px;height:14px"></i></a>
+          </div>
+        </article>
+        <article class="bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-xl transition-all group">
+          <div class="h-52 bg-gradient-to-br from-brand/20 to-brand/5 flex items-center justify-center relative overflow-hidden">
+            <i data-lucide="leaf" class="text-brand group-hover:scale-110 transition-transform" style="width:56px;height:56px;stroke-width:1.2"></i>
+            <span class="absolute top-3 left-3 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-brand">Ингредиенты</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-extrabold text-xl text-brand mb-2">Центелла азиатская: за что её любят?</h3>
+            <p class="text-gray-500 text-sm font-medium mb-4">Разбираем главный компонент корейских средств для успокоения и восстановления чувствительной кожи.</p>
+            <a href="#" class="inline-flex items-center gap-1 text-brand font-bold text-sm hover:gap-2 transition-all">Читать <i data-lucide="chevron-right" style="width:14px;height:14px"></i></a>
+          </div>
+        </article>
+        <article class="bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-xl transition-all group">
+          <div class="h-52 bg-gradient-to-br from-brand/20 to-brand/5 flex items-center justify-center relative overflow-hidden">
+            <i data-lucide="moon-star" class="text-brand group-hover:scale-110 transition-transform" style="width:56px;height:56px;stroke-width:1.2"></i>
+            <span class="absolute top-3 left-3 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-brand">Ритуалы</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-extrabold text-xl text-brand mb-2">Вечерний уход за 10 минут</h3>
+            <p class="text-gray-500 text-sm font-medium mb-4">Пошаговый ритуал с муцином улитки и ночной маской для восстановления кожи во сне.</p>
+            <a href="#" class="inline-flex items-center gap-1 text-brand font-bold text-sm hover:gap-2 transition-all">Читать <i data-lucide="chevron-right" style="width:14px;height:14px"></i></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ПАРТНЕРАМ / ОПТ ==================== -->
+  <section id="partners" class="relative py-20 sm:py-24 scroll-mt-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-brand text-white rounded-[2.5rem] p-8 sm:p-12 shadow-2xl overflow-hidden relative">
+        <div class="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+        <div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
+          <div class="flex-shrink-0">
+            <div class="bg-white/10 p-6 rounded-full">
+              <i data-lucide="handshake" style="width:48px;height:48px" class="text-white"></i>
+            </div>
+          </div>
+          <div class="flex-1 text-center md:text-left">
+            <h2 class="text-3xl sm:text-4xl font-black mb-3">Стать партнером</h2>
+            <p class="text-white/80 font-medium text-lg mb-6">Развивай бизнес вместе с QQQ CARE. Выгодные условия для оптовых клиентов, салонов красоты и бьюти-блогеров. Предоставляем сертификаты и маркетинговую поддержку.</p>
+            <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+              <a href="https://wa.me/77000000000?text=Здравствуйте!%20Хочу%20узнать%20условия%20партнерства." target="_blank" class="bg-white text-brand font-bold px-7 py-3.5 rounded-full hover:bg-gray-100 transition inline-flex items-center gap-2">
+                <i data-lucide="message-circle" style="width:18px;height:18px"></i> Обсудить в WhatsApp
+              </a>
+              <a href="mailto:partners@qqqcare.kz" class="bg-transparent text-white border-2 border-white/50 font-bold px-7 py-3.5 rounded-full hover:bg-white/10 transition">partners@qqqcare.kz</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== О НАС / ФИЛОСОФИЯ ==================== -->
+  <section id="about" class="relative py-20 sm:py-24 bg-white scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="order-2 md:order-1">
+          <span class="text-brand font-bold text-sm tracking-widest uppercase">Философия</span>
+          <h2 class="text-3xl sm:text-5xl font-black text-gray-900 mt-3 mb-6">Почему QQQ CARE?</h2>
+          <p class="text-gray-600 text-lg font-medium leading-relaxed mb-8">
+            Мы не просто продаём косметику. Мы привозим из Сеула целую философию заботы о себе. Каждая баночка — это результат многолетних исследований и любви к натуральным ингредиентам. Без агрессивной химии, без пустых обещаний. Только та упаковка, которая будет работать на твою красоту каждый день.
+          </p>
+          <div class="grid sm:grid-cols-3 gap-4">
+            <div class="bg-brand/5 rounded-2xl p-4 text-center"><span class="text-2xl">🌱</span><p class="font-bold text-brand mt-1">Чистые составы</p></div>
+            <div class="bg-brand/5 rounded-2xl p-4 text-center"><span class="text-2xl">🔬</span><p class="font-bold text-brand mt-1">Лабораторный контроль</p></div>
+            <div class="bg-brand/5 rounded-2xl p-4 text-center"><span class="text-2xl">💚</span><p class="font-bold text-brand mt-1">Любовь к клиентам</p></div>
+          </div>
+        </div>
+        <div class="order-1 md:order-2 flex justify-center">
+          <div class="organic-shape bg-brand/10 w-80 h-80 lg:w-96 lg:h-96 flex items-center justify-center drift">
+            <div class="bg-white/80 backdrop-blur p-8 rounded-full">
+              <i data-lucide="heart-handshake" class="text-brand" style="width:64px;height:64px;stroke-width:1.2"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ФУТЕР ==================== -->
+  <footer class="bg-brand text-white rounded-t-[3rem] mt-6">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 py-14 sm:py-16">
+      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-10">
+        <div>
+          <p class="text-3xl font-black mb-3">qqq care.</p>
+          <p class="text-sm italic text-white/60 font-medium">quirky qualitative quintessential</p>
+          <p class="text-white/70 text-sm mt-4 font-medium">Корейская косметика, которая действительно работает. Премиум уход для сияющей кожи.</p>
+        </div>
+        <div>
+          <p class="font-extrabold uppercase text-xs tracking-widest text-white/50 mb-4">Разделы</p>
+          <div class="flex flex-col gap-3 text-sm font-medium">
+            <a href="#catalog" class="text-white/80 hover:text-white transition">Каталог</a>
+            <a href="#news" class="text-white/80 hover:text-white transition">Новости</a>
+            <a href="#partners" class="text-white/80 hover:text-white transition">Партнерам</a>
+            <a href="#about" class="text-white/80 hover:text-white transition">О бренде</a>
+            <a href="contacts.html" class="text-white/80 hover:text-white transition">Контакты</a>
+          </div>
+        </div>
+        <div>
+          <p class="font-extrabold uppercase text-xs tracking-widest text-white/50 mb-4">Контакты</p>
+          <div class="flex flex-col gap-3 text-sm font-medium">
+            <span class="text-white/80 flex items-center gap-2"><i data-lucide="phone" style="width:16px;height:16px"></i> +7 (700) 000-00-00</span>
+            <span class="text-white/80 flex items-center gap-2"><i data-lucide="map-pin" style="width:16px;height:16px"></i> Алматы, Казахстан</span>
+            <span class="text-white/80 flex items-center gap-2"><i data-lucide="mail" style="width:16px;height:16px"></i> hello@qqqcare.kz</span>
+          </div>
+        </div>
+        <div>
+          <p class="font-extrabold uppercase text-xs tracking-widest text-white/50 mb-4">Мы на связи</p>
+          <div class="flex gap-3 mb-5">
+            <a href="#" class="bg-white/10 hover:bg-white/20 p-3 rounded-full transition"><i data-lucide="instagram" style="width:18px;height:18px"></i></a>
+            <a href="#" class="bg-white/10 hover:bg-white/20 p-3 rounded-full transition"><i data-lucide="send" style="width:18px;height:18px"></i></a>
+            <a href="https://wa.me/77000000000" target="_blank" class="bg-white/10 hover:bg-white/20 p-3 rounded-full transition"><i data-lucide="message-circle" style="width:18px;height:18px"></i></a>
+          </div>
+          <a href="https://wa.me/77000000000" target="_blank" class="inline-flex items-center gap-2 bg-white text-brand font-bold px-6 py-3 rounded-full hover:bg-gray-200 transition text-sm">
+            <i data-lucide="shopping-bag" style="width:16px;height:16px"></i> Заказать в WhatsApp
+          </a>
+        </div>
+      </div>
+      <div class="border-t border-white/15 mt-12 pt-6 text-xs text-white/50 font-medium flex flex-col sm:flex-row justify-between gap-2">
+        <span id="footer-year"></span>
+        <span>Сделано с 💚 для твоей кожи</span>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50"></div>
+
+  <script>
+    // ---------- Данные каталога (без корзины, заказ сразу через WhatsApp) ----------
+    const ICONS = ['droplet', 'leaf', 'sparkles', 'sun', 'heart', 'flower-2', 'gem', 'zap', 'feather', 'cherry', 'coffee', 'moon', 'smile', 'wind', 'target'];
+    const TINTS = ['bg-brand/5', 'bg-brand/10', 'bg-brand/15'];
+
+    const RAW_PRODUCTS = [
+      { id: 1, name: 'Тонер «Рисовое сияние»', category: 'Тонеры', desc: 'Увлажняет и выравнивает тон', price: 4900 },
+      { id: 2, name: 'Сыворотка с центеллой', category: 'Сыворотки', desc: 'Успокаивает и восстанавливает', price: 7200 },
+      { id: 3, name: 'Крем с муцином улитки', category: 'Кремы', desc: 'Регенерация и упругость', price: 6500 },
+      { id: 4, name: 'Пенка с зелёным чаем', category: 'Очищение', desc: 'Мягко удаляет загрязнения', price: 3200 },
+      { id: 5, name: 'Эссенция с ниацинамидом', category: 'Эссенции', desc: 'Сияние и борьба с пигментацией', price: 8100 },
+      { id: 6, name: 'Ночная маска с гиалуроном', category: 'Маски', desc: 'Интенсивное увлажнение ночью', price: 5400 },
+      { id: 7, name: 'Крем для глаз с женьшенем', category: 'Уход за глазами', desc: 'Против отёков и тёмных кругов', price: 6900 },
+      { id: 8, name: 'Солнцезащитный крем SPF50+', category: 'Защита', desc: 'Невесомый, без белых следов', price: 4700 },
+      { id: 9, name: 'Патчи с коллагеном', category: 'Патчи', desc: 'Мгновенное увлажнение', price: 3900 },
+      { id: 10, name: 'Мист с алоэ', category: 'Мисты', desc: 'Освежает в течение дня', price: 3500 },
+      { id: 11, name: 'Тканевая маска с авокадо', category: 'Маски', desc: 'Питание и восстановление', price: 1200 },
+      { id: 12, name: 'Пилинг-скатка с папайей', category: 'Пилинги', desc: 'Деликатное обновление', price: 4300 },
+      { id: 13, name: 'Бальзам с маслом ши', category: 'Уход за губами', desc: 'Питание и защита', price: 2100 },
+      { id: 14, name: 'BB-кушон с SPF', category: 'Макияж', desc: 'Ровный тон и уход', price: 8900 },
+      { id: 15, name: 'Румяна «Персик»', category: 'Макияж', desc: 'Естественный румянец', price: 5200 },
+      { id: 16, name: 'Масло с камелией', category: 'Масла', desc: 'Питание и сияние', price: 7600 },
+      { id: 17, name: 'Скраб с кофе', category: 'Тело', desc: 'Антицеллюлитный уход', price: 4100 },
+      { id: 18, name: 'Шампунь с биотином', category: 'Волосы', desc: 'Укрепляет корни', price: 5800 },
+      { id: 19, name: 'Крем-баттер для тела', category: 'Тело', desc: 'Глубокое увлажнение', price: 4600 },
+      { id: 20, name: 'Гидрогелевые патчи', category: 'Патчи', desc: 'Лифтинг и свежесть', price: 3700 },
+    ];
+
+    const PRODUCTS = RAW_PRODUCTS.map((p, i) => ({
+      ...p,
+      icon: ICONS[i % ICONS.length],
+      tint: TINTS[i % TINTS.length],
+    }));
+
+    const WHATSAPP_NUMBER = '77000000000'; // Замените на реальный номер
+
+    function formatPrice(v) { return v.toLocaleString('ru-RU') + ' ₸'; }
+
+    function getWhatsAppLink(product) {
+      const text = `Здравствуйте! Хочу заказать: ${product.name} (${formatPrice(product.price)}).`;
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    }
+
+    function renderCatalog() {
+      const grid = document.getElementById('catalog-grid');
+      grid.innerHTML = PRODUCTS.map((p) => `
+        <div class="bg-white rounded-3xl p-4 shadow-soft hover:shadow-2xl border border-gray-100 flex flex-col transition-all duration-300 hover:-translate-y-1.5 group">
+          <div class="relative aspect-square rounded-2xl ${p.tint} flex items-center justify-center overflow-hidden mb-4">
+            <span class="absolute top-3 left-3 bg-white/90 backdrop-blur px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-bold text-brand shadow-sm">${p.category}</span>
+            <i data-lucide="${p.icon}" class="text-brand opacity-80 group-hover:scale-110 transition-transform" style="width:48px;height:48px;stroke-width:1.2"></i>
+          </div>
+          <h3 class="font-extrabold text-brand text-sm sm:text-base leading-snug">${p.name}</h3>
+          <p class="text-gray-400 text-xs font-medium mt-1">${p.desc}</p>
+          <div class="flex items-center justify-between mt-3 mb-4">
+            <span class="font-black text-gray-900 text-lg">${formatPrice(p.price)}</span>
+          </div>
+          <a href="${getWhatsAppLink(p)}" target="_blank" class="bg-brand text-white mt-auto w-full py-3 rounded-full font-bold text-xs sm:text-sm flex items-center justify-center gap-2 hover:bg-brand-light active:scale-95 transition shadow-md">
+            <i data-lucide="message-circle" style="width:16px;height:16px"></i>
+            Заказать
+          </a>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    // ---------- Мобильное меню ----------
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+    if (menuBtn) {
+      menuBtn.addEventListener('click', () => {
+        mobileNav.classList.toggle('hidden');
+        mobileNav.classList.toggle('flex');
+      });
+    }
+    if (mobileNav) {
+      mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.add('hidden');
+          mobileNav.classList.remove('flex');
+        });
+      });
+    }
+
+    // ---------- Инициализация ----------
+    document.getElementById('footer-year').textContent = '© ' + new Date().getFullYear() + ' QQQ CARE. Все права защищены.';
+    renderCatalog();
+  </script>
+</body>
+</html>
