@@ -1,106 +1,98 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Каталог — qqq care.</title>
-<meta name="description" content="Каталог корейской косметики qqq care." />
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: { brand: '#0C5740' },
-        fontFamily: { sans: ['Nunito', 'sans-serif'] },
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Каталог — qqq care.</title>
+  <meta name="description" content="Каталог корейской косметики qqq care. Линейка QUIRKY." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brand: '#0C5740', 'brand-light': '#1a7a5a' },
+          fontFamily: { sans: ['Nunito', 'sans-serif'] },
+          boxShadow: { 'soft': '0 20px 40px -15px rgba(0, 0, 0, 0.08)' },
+        },
       },
-    },
-  };
-</script>
-
-<script src="https://unpkg.com/lucide@latest"></script>
-
-<style>
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Nunito', sans-serif; }
-  .blob { pointer-events: none; position: absolute; border-radius: 9999px; filter: blur(70px); }
-  @keyframes bump { 0% { transform: scale(1); } 45% { transform: scale(1.4); } 100% { transform: scale(1); } }
-  .badge-bump { animation: bump .35s ease; }
-  @keyframes slideUp { from { transform: translate(-50%, 16px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
-  .toast-anim { animation: slideUp .3s ease; }
-  .chip-btn { transition: background-color .2s ease, color .2s ease, border-color .2s ease; }
-</style>
+    };
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; }
+    .blob { pointer-events: none; position: absolute; border-radius: 9999px; filter: blur(70px); }
+    @keyframes slideUp { from { transform: translate(-50%, 16px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+    .toast-anim { animation: slideUp .3s ease; }
+    .chip-btn { transition: background-color .2s ease, color .2s ease, border-color .2s ease; }
+  </style>
 </head>
 
 <body class="bg-white text-gray-800 antialiased">
 
   <!-- ==================== HEADER ==================== -->
-  <header class="sticky top-0 z-30 bg-white/85 backdrop-blur-md border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="index.html" class="text-2xl font-extrabold text-brand tracking-tight">qqq care.</a>
+  <header class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <span class="text-3xl font-black text-brand tracking-tight">qqq</span>
+        <span class="bg-brand/10 text-brand px-2.5 py-1 rounded-full text-lg font-extrabold">care.</span>
+      </a>
 
       <nav class="hidden sm:flex items-center gap-8">
-        <a href="catalog.html" class="text-brand font-extrabold text-sm">Каталог</a>
-        <a href="about.html" class="text-gray-600 hover:text-brand font-semibold text-sm transition">О нас</a>
-        <a href="contacts.html" class="text-gray-600 hover:text-brand font-semibold text-sm transition">Контакты</a>
+        <a href="catalog.html" data-i18n="navCatalog" class="text-brand font-extrabold text-sm">Каталог</a>
+        <a href="about.html" data-i18n="navAbout" class="text-gray-600 hover:text-brand font-semibold text-sm transition">О бренде</a>
+        <a href="contacts.html" data-i18n="navContacts" class="text-gray-600 hover:text-brand font-semibold text-sm transition">Контакты</a>
       </nav>
 
-      <div class="flex items-center gap-2">
-        <button id="cart-btn" aria-label="Открыть корзину" class="relative text-gray-500 hover:bg-brand/10 hover:text-brand rounded-full p-2.5 transition">
+      <div class="flex items-center gap-2 sm:gap-3">
+        <div class="flex items-center bg-gray-100 p-1 rounded-full">
+          <button data-set-lang="ru" class="px-3 py-1 rounded-full text-xs font-extrabold bg-brand text-white transition">RU</button>
+          <button data-set-lang="kz" class="px-3 py-1 rounded-full text-xs font-extrabold text-gray-500 hover:text-brand transition">KZ</button>
+        </div>
+
+        <button id="cart-btn" aria-label="Открыть заявку" class="relative text-gray-600 hover:bg-brand/10 hover:text-brand rounded-full p-2.5 transition">
           <i data-lucide="shopping-bag" style="width:22px;height:22px"></i>
           <span id="cart-badge" class="hidden absolute -top-1 -right-1 bg-brand text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
         </button>
 
-        <button id="menu-btn" aria-label="Открыть меню" class="sm:hidden text-gray-500 hover:bg-brand/10 hover:text-brand rounded-full p-2.5 transition">
+        <button id="menu-btn" aria-label="Открыть меню" class="sm:hidden text-gray-600 hover:bg-brand/10 hover:text-brand rounded-full p-2.5 transition">
           <i data-lucide="menu" style="width:22px;height:22px"></i>
         </button>
       </div>
     </div>
 
-    <nav id="mobile-nav" class="hidden sm:hidden flex-col gap-1 px-4 pb-4 border-t border-gray-100">
-      <a href="catalog.html" class="block text-brand font-extrabold text-sm py-2.5">Каталог</a>
-      <a href="about.html" class="block text-gray-600 hover:text-brand font-semibold text-sm py-2.5 transition">О нас</a>
-      <a href="contacts.html" class="block text-gray-600 hover:text-brand font-semibold text-sm py-2.5 transition">Контакты</a>
+    <nav id="mobile-nav" class="hidden sm:hidden flex-col gap-1 px-4 pb-4 border-t border-gray-100 bg-white">
+      <a href="catalog.html" data-i18n="navCatalog" class="block text-brand font-extrabold text-sm py-2.5">Каталог</a>
+      <a href="about.html" data-i18n="navAbout" class="block text-gray-600 hover:text-brand font-semibold text-sm py-2.5 transition">О бренде</a>
+      <a href="contacts.html" data-i18n="navContacts" class="block text-gray-600 hover:text-brand font-semibold text-sm py-2.5 transition">Контакты</a>
     </nav>
   </header>
 
-  <!-- ==================== ЗАГОЛОВОК СТРАНИЦЫ ==================== -->
+  <!-- ==================== ЗАГОЛОВОК ==================== -->
   <section class="relative overflow-hidden">
     <div class="blob bg-brand/10 w-80 h-80 -top-24 -right-24"></div>
-
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 pb-6">
-      <nav class="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-gray-400 mb-5">
-        <a href="index.html" class="hover:text-brand transition">Главная</a>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-6">
+      <nav class="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-gray-400 mb-4">
+        <a href="index.html" data-i18n="breadcrumbHome" class="hover:text-brand transition">Главная</a>
         <i data-lucide="chevron-right" style="width:14px;height:14px"></i>
-        <span class="text-brand">Каталог</span>
+        <span data-i18n="navCatalog" class="text-brand">Каталог</span>
       </nav>
-
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-brand mb-2">Каталог</h1>
-      <p class="text-gray-500 font-medium">20 средств для вашего идеального ухода</p>
+      <h1 data-i18n="catTitle" class="text-3xl sm:text-4xl font-extrabold text-brand mb-2">Каталог средств</h1>
+      <p data-i18n="catSub" class="text-gray-500 font-medium max-w-2xl">Выбери свой идеальный уход. Каждое средство — концентрат пользы.</p>
     </div>
   </section>
 
   <!-- ==================== ФИЛЬТРЫ ==================== -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col lg:flex-row lg:items-center gap-4 mb-8">
+    <div class="flex flex-col md:flex-row md:items-center gap-4 mb-8">
       <div class="relative flex-1 max-w-md">
         <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" style="width:17px;height:17px"></i>
-        <input id="search-input" type="text" placeholder="Поиск товара..." class="w-full rounded-full border-[1.5px] border-gray-200 pl-11 pr-4 py-2.5 text-sm font-medium outline-none focus:border-brand transition" />
+        <input id="search-input" type="text" data-i18n-placeholder="searchPlaceholder" placeholder="Поиск по названию или компоненту..." class="w-full rounded-full border-[1.5px] border-gray-200 pl-11 pr-4 py-2.5 text-sm font-medium outline-none focus:border-brand transition" />
       </div>
-
       <div id="chip-row" class="flex flex-wrap gap-2"></div>
-
-      <select id="sort-select" class="lg:ml-auto rounded-full border-[1.5px] border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-600 outline-none focus:border-brand transition cursor-pointer">
-        <option value="default">По популярности</option>
-        <option value="price-asc">Сначала дешёвые</option>
-        <option value="price-desc">Сначала дорогие</option>
-      </select>
     </div>
-
-    <p id="results-count" class="text-sm font-semibold text-gray-400 mb-6"></p>
   </section>
 
   <!-- ==================== СЕТКА ТОВАРОВ ==================== -->
@@ -109,9 +101,9 @@
 
     <div id="empty-state" class="hidden flex-col items-center justify-center text-center py-20">
       <i data-lucide="search-x" class="text-brand opacity-40 mb-4" style="width:48px;height:48px;stroke-width:1.3"></i>
-      <h3 class="font-extrabold text-gray-700 mb-1.5">Ничего не найдено</h3>
-      <p class="text-gray-400 text-sm font-medium max-w-xs mb-5">Попробуйте изменить запрос или выбрать другую категорию</p>
-      <button id="reset-filters" class="bg-brand text-white px-6 py-2.5 rounded-full font-bold text-sm hover:opacity-90 transition">Сбросить фильтры</button>
+      <h3 data-i18n="emptyTitle" class="font-extrabold text-gray-700 mb-1.5">Ничего не найдено</h3>
+      <p data-i18n="emptyDesc" class="text-gray-400 text-sm font-medium max-w-xs mb-5">Попробуйте изменить запрос или выбрать другую категорию</p>
+      <button id="reset-filters" data-i18n="resetFilters" class="bg-brand text-white px-6 py-2.5 rounded-full font-bold text-sm hover:opacity-90 transition">Сбросить фильтры</button>
     </div>
   </section>
 
@@ -124,14 +116,13 @@
           <p class="text-sm italic text-white/70 font-medium">quirky qualitative quintessential</p>
         </div>
         <div class="flex flex-col gap-2 text-sm">
-          <a href="catalog.html" class="text-white/75 hover:text-white font-semibold transition">Каталог</a>
-          <a href="about.html" class="text-white/75 hover:text-white font-semibold transition">О нас</a>
-          <a href="contacts.html" class="text-white/75 hover:text-white font-semibold transition">Контакты</a>
+          <a href="catalog.html" data-i18n="navCatalog" class="text-white/75 hover:text-white font-semibold transition">Каталог</a>
+          <a href="about.html" data-i18n="navAbout" class="text-white/75 hover:text-white font-semibold transition">О бренде</a>
+          <a href="contacts.html" data-i18n="navContacts" class="text-white/75 hover:text-white font-semibold transition">Контакты</a>
         </div>
         <div class="flex flex-col gap-2 text-sm">
-          <span class="text-white/75 flex items-center gap-2 font-semibold"><i data-lucide="phone" style="width:15px;height:15px"></i> +7 (700) 000-00-00</span>
-          <span class="text-white/75 flex items-center gap-2 font-semibold"><i data-lucide="map-pin" style="width:15px;height:15px"></i> Алматы, Казахстан</span>
-          <span class="text-white/75 flex items-center gap-2 font-semibold"><i data-lucide="instagram" style="width:15px;height:15px"></i> @qqqcare</span>
+          <span class="text-white/75 flex items-center gap-2 font-semibold"><i data-lucide="map-pin" style="width:15px;height:15px"></i> <span data-i18n="footerCity">Алматы, Казахстан</span></span>
+          <a href="mailto:hello@qqqcare.kz" class="text-white/75 hover:text-white flex items-center gap-2 font-semibold"><i data-lucide="mail" style="width:15px;height:15px"></i> hello@qqqcare.kz</a>
         </div>
       </div>
       <div class="border-t border-white/15 mt-10 pt-6 text-xs text-white/60 font-medium text-center sm:text-left">
@@ -142,11 +133,10 @@
 
   <!-- ==================== КОРЗИНА ==================== -->
   <div id="cart-overlay" class="fixed inset-0 bg-black/40 z-40 transition-opacity duration-300 opacity-0 pointer-events-none"></div>
-
   <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full sm:w-[440px] bg-white z-50 shadow-2xl flex flex-col transition-transform duration-300 translate-x-full">
     <div class="flex items-center justify-between px-5 sm:px-6 h-16 border-b border-gray-100 flex-shrink-0">
-      <h2 id="cart-title" class="font-extrabold text-lg text-brand">Корзина</h2>
-      <button id="cart-close" aria-label="Закрыть корзину" class="text-gray-500 hover:bg-brand/10 hover:text-brand rounded-full p-2 transition">
+      <h2 id="cart-title" class="font-extrabold text-lg text-brand">Ваша заявка</h2>
+      <button id="cart-close" aria-label="Закрыть" class="text-gray-500 hover:bg-brand/10 hover:text-brand rounded-full p-2 transition">
         <i data-lucide="x" style="width:20px;height:20px"></i>
       </button>
     </div>
@@ -155,113 +145,38 @@
 
   <div id="toast-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50"></div>
 
+  <script src="app.js"></script>
   <script>
-    /* ============================================================
-       qqq care. — страница «Каталог»
-       Ванильный JavaScript, без сборки. Комментарии — на русском.
-       ============================================================ */
-
-    const ICONS = ['droplet', 'leaf', 'sparkles', 'sun', 'heart'];
-    const TINTS = ['bg-brand/5', 'bg-brand/8', 'bg-brand/12'];
-    const CATEGORIES = ['Все', 'Уход за лицом', 'Уход за телом', 'Уход за волосами', 'Макияж'];
-
-    const RAW_PRODUCTS = [
-      { id: 1, name: 'Тонер увлажняющий «Рисовое сияние»', category: 'Уход за лицом', price: 4900 },
-      { id: 2, name: 'Сыворотка с центеллой азиатской', category: 'Уход за лицом', price: 7200 },
-      { id: 3, name: 'Крем с муцином улитки', category: 'Уход за лицом', price: 6500 },
-      { id: 4, name: 'Пенка для умывания с зелёным чаем', category: 'Уход за лицом', price: 3200 },
-      { id: 5, name: 'Эссенция с ниацинамидом', category: 'Уход за лицом', price: 8100 },
-      { id: 6, name: 'Ночная маска с гиалуроновой кислотой', category: 'Уход за лицом', price: 5400 },
-      { id: 7, name: 'Крем для глаз с женьшенем', category: 'Уход за лицом', price: 6900 },
-      { id: 8, name: 'Солнцезащитный крем SPF50+', category: 'Уход за лицом', price: 4700 },
-      { id: 9, name: 'Патчи для глаз с коллагеном', category: 'Уход за лицом', price: 3900 },
-      { id: 10, name: 'Увлажняющий мист с алоэ', category: 'Уход за лицом', price: 3500 },
-      { id: 11, name: 'Тканевая маска с авокадо', category: 'Уход за лицом', price: 1200 },
-      { id: 12, name: 'Пилинг-скатка с папайей', category: 'Уход за лицом', price: 4300 },
-      { id: 13, name: 'Бальзам для губ с маслом ши', category: 'Уход за лицом', price: 2100 },
-      { id: 14, name: 'BB-кушон с SPF', category: 'Макияж', price: 8900 },
-      { id: 15, name: 'Кремовые румяна «Персик»', category: 'Макияж', price: 5200 },
-      { id: 16, name: 'Масло для лица с камелией', category: 'Уход за лицом', price: 7600 },
-      { id: 17, name: 'Скраб для тела с кофе', category: 'Уход за телом', price: 4100 },
-      { id: 18, name: 'Укрепляющий шампунь с биотином', category: 'Уход за волосами', price: 5800 },
-      { id: 19, name: 'Крем-баттер для тела с маслом ши', category: 'Уход за телом', price: 4600 },
-      { id: 20, name: 'Гидрогелевые патчи под глаза', category: 'Уход за лицом', price: 3700 },
-    ];
-
-    const PRODUCTS = RAW_PRODUCTS.map((p, i) => ({
-      ...p,
-      icon: ICONS[i % ICONS.length],
-      tint: TINTS[i % TINTS.length],
-    }));
-
-    // ---------- Состояние ----------
-    let cart = [];
-    let orderSuccess = false;
-    let toastTimer = null;
+    let activeCat = 'all';
     let searchQuery = '';
-    let activeCategory = 'Все';
-    let sortMode = 'default';
 
-    // ---------- Вспомогательные функции ----------
-    function formatPrice(v) { return v.toLocaleString('ru-RU') + ' ₸'; }
-    function pluralizeRu(n, forms) {
-      const mod10 = n % 10, mod100 = n % 100;
-      if (mod10 === 1 && mod100 !== 11) return forms[0];
-      if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return forms[1];
-      return forms[2];
-    }
-    function totalItems() { return cart.reduce((s, i) => s + i.qty, 0); }
-    function totalPrice() { return cart.reduce((s, i) => s + i.qty * i.price, 0); }
-    function findProduct(id) { return PRODUCTS.find((p) => p.id === id); }
-    function findCartItem(id) { return cart.find((i) => i.id === id); }
-
-    // ---------- Чипы категорий ----------
     function renderChips() {
       const row = document.getElementById('chip-row');
-      row.innerHTML = CATEGORIES.map((cat) => {
-        const active = cat === activeCategory;
-        return `<button data-chip="${cat}" class="chip-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold border-[1.5px] ${active ? 'bg-brand text-white border-brand' : 'bg-white text-gray-600 border-gray-200 hover:border-brand hover:text-brand'}">${cat}</button>`;
+      row.innerHTML = Object.keys(CATEGORIES).map(catKey => {
+        const active = catKey === activeCat;
+        const label = getCategoryName(catKey);
+        return `<button data-chip="${catKey}" class="chip-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold border-[1.5px] ${active ? 'bg-brand text-white border-brand' : 'bg-white text-gray-600 border-gray-200 hover:border-brand hover:text-brand'}">${label}</button>`;
       }).join('');
     }
 
-    // ---------- Карточка товара (со ссылкой на страницу товара) ----------
-    function productCardHTML(p) {
-      return `
-        <div class="bg-white rounded-3xl p-3.5 sm:p-4 shadow-sm hover:shadow-xl border border-gray-100 flex flex-col transition-all duration-300 hover:-translate-y-1">
-          <a href="product.html?id=${p.id}" class="block">
-            <div class="relative aspect-square rounded-2xl ${p.tint} flex items-center justify-center overflow-hidden">
-              <span class="absolute top-3 left-3 bg-white/90 backdrop-blur px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-bold text-brand shadow-sm">${p.category}</span>
-              <i data-lucide="${p.icon}" class="text-brand opacity-80" style="width:46px;height:46px;stroke-width:1.3"></i>
-            </div>
-            <h3 class="font-extrabold text-brand text-sm sm:text-base mt-3.5 leading-snug hover:underline">${p.name}</h3>
-          </a>
-          <div class="flex items-center justify-between mt-3">
-            <span class="font-extrabold text-gray-900 text-sm sm:text-base">${formatPrice(p.price)}</span>
-          </div>
-          <button data-action="add" data-id="${p.id}" class="bg-brand text-white mt-3 w-full py-2.5 rounded-full font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 hover:opacity-90 active:scale-95 transition">
-            <i data-lucide="shopping-bag" style="width:15px;height:15px"></i>
-            В корзину
-          </button>
-        </div>`;
-    }
-
-    // ---------- Отрисовка сетки с учётом фильтров ----------
     function renderGrid() {
       let list = PRODUCTS.slice();
-
-      if (activeCategory !== 'Все') list = list.filter((p) => p.category === activeCategory);
+      if (activeCat !== 'all') {
+        list = list.filter(p => p.categoryId === activeCat);
+      }
       if (searchQuery.trim()) {
         const q = searchQuery.trim().toLowerCase();
-        list = list.filter((p) => p.name.toLowerCase().includes(q));
+        list = list.filter(p => {
+          const pt = getProductText(p);
+          const inName = pt.name.toLowerCase().includes(q);
+          const inDesc = pt.description.toLowerCase().includes(q);
+          const inFormula = pt.formula.join(' ').toLowerCase().includes(q);
+          return inName || inDesc || inFormula;
+        });
       }
-      if (sortMode === 'price-asc') list.sort((a, b) => a.price - b.price);
-      if (sortMode === 'price-desc') list.sort((a, b) => b.price - a.price);
 
       const grid = document.getElementById('catalog-grid');
       const emptyState = document.getElementById('empty-state');
-      const count = document.getElementById('results-count');
-
-      count.textContent = `Показано ${list.length} из ${PRODUCTS.length} товаров`;
 
       if (list.length === 0) {
         grid.classList.add('hidden');
@@ -271,208 +186,44 @@
         grid.classList.remove('hidden');
         emptyState.classList.add('hidden');
         emptyState.classList.remove('flex');
-        grid.innerHTML = list.map(productCardHTML).join('');
+        grid.innerHTML = list.map(renderProductCardHTML).join('');
       }
-
-      lucide.createIcons();
+      if (window.lucide) lucide.createIcons();
     }
 
-    // ---------- Корзина ----------
-    function addToCart(id) {
-      const product = findProduct(id);
-      const existing = findCartItem(id);
-      if (existing) existing.qty += 1;
-      else cart.push({ ...product, qty: 1 });
-      bumpBadge();
-      showToast(`«${product.name}» добавлен в корзину`);
-      renderCartBody();
-      renderBadge();
-    }
-    function incQty(id) { findCartItem(id).qty += 1; renderCartBody(); renderBadge(); }
-    function decQty(id) {
-      const item = findCartItem(id);
-      item.qty -= 1;
-      if (item.qty <= 0) cart = cart.filter((i) => i.id !== id);
-      renderCartBody(); renderBadge();
-    }
-    function removeItem(id) { cart = cart.filter((i) => i.id !== id); renderCartBody(); renderBadge(); }
-
-    function renderBadge() {
-      const badge = document.getElementById('cart-badge');
-      const count = totalItems();
-      if (count > 0) { badge.textContent = count; badge.classList.remove('hidden'); }
-      else badge.classList.add('hidden');
-    }
-    function bumpBadge() {
-      const badge = document.getElementById('cart-badge');
-      badge.classList.remove('badge-bump');
-      void badge.offsetWidth;
-      badge.classList.add('badge-bump');
-    }
-
-    function renderCartBody() {
-      const body = document.getElementById('cart-body');
-      const title = document.getElementById('cart-title');
-      const count = totalItems();
-      title.textContent = count > 0 ? `Корзина · ${count} ${pluralizeRu(count, ['товар', 'товара', 'товаров'])}` : 'Корзина';
-
-      if (orderSuccess) {
-        body.innerHTML = `
-          <div class="flex flex-col items-center justify-center text-center h-full py-16">
-            <i data-lucide="check-circle-2" class="text-brand mb-4" style="width:56px;height:56px;stroke-width:1.4"></i>
-            <h3 class="font-extrabold text-brand text-lg mb-2">Заказ оформлен!</h3>
-            <p class="text-gray-500 text-sm font-medium max-w-xs mb-6">Наш менеджер свяжется с вами в течение 15 минут, чтобы подтвердить заказ и уточнить детали доставки.</p>
-            <button id="continue-shopping" class="bg-white text-brand border-[1.5px] border-brand px-6 py-2.5 rounded-full font-bold text-sm hover:bg-brand/5 transition">Продолжить покупки</button>
-          </div>`;
-      } else if (cart.length === 0) {
-        body.innerHTML = `
-          <div class="flex flex-col items-center justify-center text-center h-full py-16">
-            <i data-lucide="shopping-bag" class="text-brand opacity-40 mb-4" style="width:48px;height:48px;stroke-width:1.3"></i>
-            <h3 class="font-extrabold text-gray-700 mb-1.5">Ваша корзина пуста</h3>
-            <p class="text-gray-400 text-sm font-medium max-w-xs">Добавьте товары из каталога, чтобы оформить заказ</p>
-          </div>`;
-      } else {
-        const itemsHTML = cart.map((item) => `
-          <li class="flex items-center gap-3 py-3.5 border-b border-gray-100">
-            <div class="w-16 h-16 rounded-2xl ${item.tint} flex items-center justify-center flex-shrink-0">
-              <i data-lucide="${item.icon}" class="text-brand" style="width:24px;height:24px;stroke-width:1.4"></i>
-            </div>
-            <div class="flex-1 min-w-0">
-              <p class="font-bold text-brand text-sm leading-snug truncate">${item.name}</p>
-              <p class="text-gray-400 text-xs font-semibold mt-0.5">${formatPrice(item.price)}</p>
-              <div class="flex items-center gap-2 mt-2 border border-gray-200 rounded-full w-fit px-1">
-                <button data-action="dec" data-id="${item.id}" class="text-gray-500 hover:bg-brand/10 hover:text-brand rounded-full p-1 transition"><i data-lucide="minus" style="width:14px;height:14px"></i></button>
-                <span class="text-xs font-extrabold w-4 text-center">${item.qty}</span>
-                <button data-action="inc" data-id="${item.id}" class="text-gray-500 hover:bg-brand/10 hover:text-brand rounded-full p-1 transition"><i data-lucide="plus" style="width:14px;height:14px"></i></button>
-              </div>
-            </div>
-            <button data-action="remove" data-id="${item.id}" class="text-gray-400 hover:text-red-500 rounded-full p-2 self-start transition"><i data-lucide="trash-2" style="width:16px;height:16px"></i></button>
-          </li>`).join('');
-
-        body.innerHTML = `
-          <ul class="py-2">${itemsHTML}</ul>
-          <div class="flex items-center justify-between py-4">
-            <span class="font-bold text-gray-500">Итого</span>
-            <span class="font-extrabold text-brand text-xl">${formatPrice(totalPrice())}</span>
-          </div>
-          <div class="border-t border-gray-100 pt-5 pb-8">
-            <h3 class="font-extrabold text-brand mb-4">Оформление заказа</h3>
-            <form id="order-form" class="flex flex-col gap-3">
-              <label class="block">
-                <span class="text-xs font-bold text-gray-500 mb-1.5 block">Имя</span>
-                <div class="relative">
-                  <i data-lucide="user" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" style="width:16px;height:16px"></i>
-                  <input required type="text" name="name" placeholder="Например, Айгерим" class="w-full rounded-2xl border-[1.5px] border-gray-200 pl-10 pr-4 py-3 text-sm font-medium outline-none focus:border-brand transition" />
-                </div>
-              </label>
-              <label class="block">
-                <span class="text-xs font-bold text-gray-500 mb-1.5 block">Номер телефона</span>
-                <div class="relative">
-                  <i data-lucide="phone" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" style="width:16px;height:16px"></i>
-                  <input required type="tel" name="phone" placeholder="+7 (___) ___-__-__" class="w-full rounded-2xl border-[1.5px] border-gray-200 pl-10 pr-4 py-3 text-sm font-medium outline-none focus:border-brand transition" />
-                </div>
-              </label>
-              <label class="block">
-                <span class="text-xs font-bold text-gray-500 mb-1.5 block">Адрес доставки</span>
-                <div class="relative">
-                  <i data-lucide="map-pin" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" style="width:16px;height:16px"></i>
-                  <input required type="text" name="address" placeholder="Город, улица, дом, квартира" class="w-full rounded-2xl border-[1.5px] border-gray-200 pl-10 pr-4 py-3 text-sm font-medium outline-none focus:border-brand transition" />
-                </div>
-              </label>
-              <button type="submit" class="bg-brand text-white w-full py-3.5 rounded-full font-extrabold text-sm mt-2 hover:opacity-90 active:scale-95 transition">Оформить заказ</button>
-            </form>
-          </div>`;
-      }
-      lucide.createIcons();
-    }
-
-    function openCart() {
-      document.getElementById('cart-overlay').classList.remove('opacity-0', 'pointer-events-none');
-      document.getElementById('cart-overlay').classList.add('opacity-100', 'pointer-events-auto');
-      document.getElementById('cart-drawer').classList.remove('translate-x-full');
-      document.getElementById('cart-drawer').classList.add('translate-x-0');
-      document.body.classList.add('overflow-hidden');
-    }
-    function closeCart() {
-      document.getElementById('cart-overlay').classList.add('opacity-0', 'pointer-events-none');
-      document.getElementById('cart-overlay').classList.remove('opacity-100', 'pointer-events-auto');
-      document.getElementById('cart-drawer').classList.add('translate-x-full');
-      document.getElementById('cart-drawer').classList.remove('translate-x-0');
-      document.body.classList.remove('overflow-hidden');
-      setTimeout(() => { orderSuccess = false; renderCartBody(); }, 300);
-    }
-
-    function showToast(text) {
-      const container = document.getElementById('toast-container');
-      container.innerHTML = `
-        <div class="bg-brand text-white flex items-center gap-2 px-5 py-3 rounded-full shadow-2xl text-sm font-bold whitespace-nowrap toast-anim">
-          <i data-lucide="check-circle-2" style="width:17px;height:17px"></i>
-          ${text}
-        </div>`;
-      lucide.createIcons();
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => { container.innerHTML = ''; }, 2200);
-    }
-
-    // ---------- События ----------
     document.addEventListener('click', (e) => {
       const chip = e.target.closest('[data-chip]');
-      if (chip) { activeCategory = chip.dataset.chip; renderChips(); renderGrid(); return; }
-
-      const actionBtn = e.target.closest('[data-action]');
-      if (actionBtn) {
-        const id = Number(actionBtn.dataset.id);
-        const action = actionBtn.dataset.action;
-        if (action === 'add') addToCart(id);
-        if (action === 'inc') incQty(id);
-        if (action === 'dec') decQty(id);
-        if (action === 'remove') removeItem(id);
+      if (chip) {
+        activeCat = chip.dataset.chip;
+        renderChips();
+        renderGrid();
         return;
       }
-
       if (e.target.closest('#reset-filters')) {
-        searchQuery = ''; activeCategory = 'Все'; sortMode = 'default';
+        activeCat = 'all';
+        searchQuery = '';
         document.getElementById('search-input').value = '';
-        document.getElementById('sort-select').value = 'default';
-        renderChips(); renderGrid();
-        return;
-      }
-
-      if (e.target.closest('#cart-btn')) { openCart(); return; }
-      if (e.target.closest('#cart-close')) { closeCart(); return; }
-      if (e.target.id === 'cart-overlay') { closeCart(); return; }
-      if (e.target.closest('#continue-shopping')) { closeCart(); return; }
-
-      if (e.target.closest('#menu-btn')) {
-        document.getElementById('mobile-nav').classList.toggle('hidden');
-        document.getElementById('mobile-nav').classList.toggle('flex');
+        renderChips();
+        renderGrid();
       }
     });
 
     document.addEventListener('input', (e) => {
-      if (e.target.id === 'search-input') { searchQuery = e.target.value; renderGrid(); }
-    });
-    document.addEventListener('change', (e) => {
-      if (e.target.id === 'sort-select') { sortMode = e.target.value; renderGrid(); }
-    });
-
-    document.addEventListener('submit', (e) => {
-      if (e.target.id === 'order-form') {
-        e.preventDefault();
-        if (cart.length === 0) return;
-        orderSuccess = true;
-        cart = [];
-        renderCartBody();
-        renderBadge();
+      if (e.target.id === 'search-input') {
+        searchQuery = e.target.value;
+        renderGrid();
       }
     });
 
-    // ---------- Инициализация ----------
-    document.getElementById('footer-year').textContent = '© ' + new Date().getFullYear() + ' qqq care. Все права защищены.';
-    renderChips();
-    renderGrid();
-    renderCartBody();
-    renderBadge();
+    window.onPageLangChange = () => {
+      renderChips();
+      renderGrid();
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderChips();
+      renderGrid();
+    });
   </script>
 </body>
 </html>
