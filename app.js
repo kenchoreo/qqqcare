@@ -4,9 +4,10 @@
 
 const SITE_CONFIG = {
   SHOW_PRICES: false,        // Поставь true, когда нужно будет включить цены
-  WHATSAPP_PHONE: '',        // Впиши номер клиента (например, '77012345678'), чтобы активировать WhatsApp
-  INSTAGRAM_URL: '',         // Впиши ссылку на Instagram (например, 'https://instagram.com/qqqcare.kz')
-  TELEGRAM_URL: '',          // Впиши ссылку на Telegram
+  WHATSAPP_PHONE: '77000603310',
+  PHONE_DISPLAY: '+7 (700) 060-33-10',
+  INSTAGRAM_URL: 'https://www.instagram.com/qqqcare.kz?stkn=MWl6ZThnaTM0NW4wcA==',
+  INSTAGRAM_HANDLE: '@qqqcare.kz',
   EMAIL: 'hello@qqqcare.kz',
   PARTNER_EMAIL: 'partners@qqqcare.kz'
 };
@@ -324,6 +325,7 @@ const I18N = {
     navPartners: 'Партнерам',
     navAbout: 'О бренде',
     navContacts: 'Контакты',
+    navWriteWhatsApp: 'Написать в WhatsApp',
     breadcrumbHome: 'Главная',
     heroBadge: 'Официальный магазин премиальной корейской косметики',
     heroTitle1: 'Преобрази свою кожу.',
@@ -333,7 +335,7 @@ const I18N = {
     heroBtnAbout: 'О бренде',
     statClients: 'довольных клиентов',
     statNatural: 'выверенные формулы',
-    statSupport: 'поддержка онлайн',
+    statSupport: 'заказ в WhatsApp',
     badgeCentella: 'CICA & Пептиды',
     badgeGlass: 'Glass Skin',
     marquee1: '✦ Премиальные ингредиенты',
@@ -346,7 +348,8 @@ const I18N = {
     catSub: 'Выбери свой идеальный уход. Каждое средство — концентрат пользы, созданный для результата, который ты увидишь в зеркале.',
     viewAllCatalog: 'Смотреть весь каталог',
     btnDetails: 'Подробнее',
-    btnAddToCart: 'В заявку',
+    btnAddToCart: 'В корзину',
+    btnOrderWA: 'Заказать в WhatsApp',
     newsTag: 'Блог',
     newsTitle: 'Советы по уходу',
     newsSub: 'Учим правильно заботиться о коже и разбираем корейские тренды.',
@@ -362,7 +365,7 @@ const I18N = {
     readMore: 'Подробнее',
     partnerTitle: 'Стать партнером',
     partnerDesc: 'Развивай бизнес вместе с QQQ CARE. Выгодные условия для оптовых клиентов, салонов красоты и бьюти-блогеров. Предоставляем сертификаты и маркетинговую поддержку.',
-    partnerBtn: 'Оставить заявку',
+    partnerBtn: 'Обсудить в WhatsApp',
     aboutTag: 'Философия',
     aboutTitle: 'Почему QQQ CARE?',
     aboutDesc: 'Мы не просто продаём косметику. Мы привозим из Сеула целую философию заботы о себе. Каждая баночка — это результат многолетних исследований и любви к работающим ингредиентам. Без агрессивной химии и пустых обещаний.',
@@ -374,7 +377,7 @@ const I18N = {
     footerContacts: 'Контакты',
     footerConnect: 'Мы на связи',
     footerCity: 'Алматы, Казахстан',
-    footerOrderBtn: 'Перейти в каталог',
+    footerOrderBtn: 'Заказать в WhatsApp',
     footerMadeWith: 'Сделано с 💚 для твоей кожи',
     footerRights: 'Все права защищены.',
     searchPlaceholder: 'Поиск по названию или компоненту...',
@@ -384,27 +387,26 @@ const I18N = {
     relatedTitle: 'Другие средства линейки',
     accDesc: 'Описание',
     accUsage: 'Как использовать',
-    accDelivery: 'Доставка и наличие',
-    accDeliveryText: 'Доставка осуществляется по Алматы и всему Казахстану. Оставьте заявку на сайте, и наш менеджер уточнит наличие, актуальную стоимость и удобный способ доставки.',
+    accDelivery: 'Доставка и заказ',
+    accDeliveryText: 'Доставка осуществляется по Алматы и всему Казахстану. Добавьте товары в корзину или напишите нам напрямую в WhatsApp — менеджер проконсультирует и поможет оформить доставку.',
     feat1: 'Быстрая доставка по РК',
     feat2: '100% оригинальный продукт',
-    feat3: 'Консультация по подбору',
-    cartTitle: 'Ваша заявка',
-    cartEmptyTitle: 'Список пуст',
-    cartEmptyDesc: 'Добавьте интересующие средства из каталога, чтобы оформить заявку на консультацию или заказ.',
-    cartOrderTitle: 'Оформление заявки',
+    feat3: 'Консультация в WhatsApp',
+    cartTitle: 'Корзина',
+    cartEmptyTitle: 'Ваша корзина пуста',
+    cartEmptyDesc: 'Добавьте интересующие средства из каталога, чтобы отправить заказ в WhatsApp.',
+    cartOrderTitle: 'Оформление через WhatsApp',
     formName: 'Имя',
     formNamePh: 'Как к вам обращаться?',
     formPhone: 'Телефон для связи',
     formPhonePh: '+7 (___) ___-__-__',
-    formAddress: 'Город / комментарий',
-    formAddressPh: 'Например: Алматы, хочу уточнить наличие',
-    formSubmitOrder: 'Отправить заявку',
-    orderSuccessTitle: 'Заявка принята!',
-    orderSuccessDesc: 'Спасибо! Наш менеджер свяжется с вами в ближайшее время для уточнения деталей.',
-    continueShopping: 'Продолжить просмотр',
-    toastAdded: 'добавлен в заявку',
-    toastSocialSoon: 'Ссылки на соцсети и WhatsApp обновляются',
+    formAddress: 'Город / адрес доставки',
+    formAddressPh: 'Например: Алматы, пр. Абая 10',
+    formSubmitOrder: 'Отправить заказ в WhatsApp',
+    orderSuccessTitle: 'Переходим в WhatsApp!',
+    orderSuccessDesc: 'Спасибо! Ваш список товаров сформирован для отправки менеджеру.',
+    continueShopping: 'Продолжить покупки',
+    toastAdded: 'добавлен в корзину',
     aboutPageTitle: 'Мы верим в силу простого ухода',
     aboutPageDesc: 'qqq care. — бренд корейской косметики, который выбирает только рабочие формулы и честные составы. Мы адаптируем традиции корейского ухода для повседневной жизни — без лишних шагов, но с заметным результатом.',
     aboutStat1Val: '11',
@@ -427,22 +429,29 @@ const I18N = {
     aboutCtaTitle: 'Готовы подобрать свой уход?',
     aboutCtaDesc: 'Ознакомьтесь со всей линейкой средств QUIRKY для лица и тела.',
     contactsTitle: 'Контакты',
-    contactsSub: 'Свяжитесь с нами через форму обратной связи или по электронной почте',
+    contactsSub: 'Мы всегда на связи — выберите удобный способ обращения',
+    contactCardPhone: 'Телефон',
+    contactCardPhoneBtn: 'Позвонить',
+    contactCardWA: 'WhatsApp',
+    contactCardWABtn: 'Написать в WhatsApp',
+    contactCardIG: 'Instagram',
+    contactCardIGBtn: 'Подписаться',
     contactCardEmail: 'Электронная почта',
     contactCardEmailBtn: 'Написать письмо',
     contactCardCity: 'Локация',
-    contactCardHours: 'Часы приёма заявок',
+    contactCardCityBtn: 'Открыть на карте',
+    contactCardHours: 'Часы работы',
     hoursMonFri: 'Пн–Пт',
     hoursSat: 'Сб',
     hoursSun: 'Вс',
     hoursSunVal: 'выходной',
     formTitle: 'Остались вопросы?',
-    formSub: 'Оставьте свои контакты, и мы свяжемся с вами в ближайшее время',
+    formSub: 'Напишите нам, и сообщение сразу откроется в чате WhatsApp с нашим менеджером',
     formMsg: 'Сообщение',
     formMsgPh: 'Расскажите, какое средство вас интересует или задайте вопрос',
-    formSendBtn: 'Отправить сообщение',
-    formSentTitle: 'Сообщение отправлено!',
-    formSentDesc: 'Мы свяжемся с вами в течение рабочего дня.'
+    formSendBtn: 'Отправить в WhatsApp',
+    formSentTitle: 'Сообщение сформировано!',
+    formSentDesc: 'Мы ответим вам в WhatsApp в ближайшее время.'
   },
   kz: {
     navCatalog: 'Каталог',
@@ -450,6 +459,7 @@ const I18N = {
     navPartners: 'Серіктестерге',
     navAbout: 'Бренд туралы',
     navContacts: 'Байланыс',
+    navWriteWhatsApp: 'WhatsApp-қа жазу',
     breadcrumbHome: 'Басты бет',
     heroBadge: 'Премиум корей косметикасының ресми дүкені',
     heroTitle1: 'Теріңізді жаңартыңыз.',
@@ -459,7 +469,7 @@ const I18N = {
     heroBtnAbout: 'Бренд туралы',
     statClients: 'риза клиенттер',
     statNatural: 'тексерілген формулалар',
-    statSupport: 'онлайн қолдау',
+    statSupport: 'WhatsApp арқылы тапсырыс',
     badgeCentella: 'CICA & Пептидтер',
     badgeGlass: 'Glass Skin',
     marquee1: '✦ Премиум ингредиенттер',
@@ -472,7 +482,8 @@ const I18N = {
     catSub: 'Өзіңізге мінсіз күтімді таңдаңыз. Әрбір өнім — айнадан көрінетін нәтиже үшін жасалған пайдалы концентрат.',
     viewAllCatalog: 'Толық каталогты көру',
     btnDetails: 'Толығырақ',
-    btnAddToCart: 'Өтінімге қосу',
+    btnAddToCart: 'Себетке салу',
+    btnOrderWA: 'WhatsApp арқылы тапсырыс',
     newsTag: 'Блог',
     newsTitle: 'Күтім бойынша кеңестер',
     newsSub: 'Теріге дұрыс күтім жасауды үйретеміз және корей трендтерін талдаймыз.',
@@ -488,7 +499,7 @@ const I18N = {
     readMore: 'Толығырақ',
     partnerTitle: 'Серіктес болу',
     partnerDesc: 'QQQ CARE-мен бірге бизнесіңізді дамытыңыз. Көтерме клиенттерге, сұлулық салондарына және бьюти-блогерлерге тиімді шарттар. Сертификаттар мен маркетингтік қолдау көрсетеміз.',
-    partnerBtn: 'Өтінім қалдыру',
+    partnerBtn: 'WhatsApp-та талқылау',
     aboutTag: 'Философия',
     aboutTitle: 'Неліктен QQQ CARE?',
     aboutDesc: 'Біз тек косметика сатпаймыз. Біз Сеулден өзіңізге деген қамқорлық философиясын әкелеміз. Әрбір құты — көпжылдық зерттеулер мен тиімді ингредиенттердің нәтижесі. Агрессивті химиясыз және бос уәделерсіз.',
@@ -500,7 +511,7 @@ const I18N = {
     footerContacts: 'Байланыс',
     footerConnect: 'Біз байланыстамыз',
     footerCity: 'Алматы, Қазақстан',
-    footerOrderBtn: 'Каталогқа өту',
+    footerOrderBtn: 'WhatsApp-та тапсырыс беру',
     footerMadeWith: 'Теріңіз үшін 💚-пен жасалған',
     footerRights: 'Барлық құқықтар қорғалған.',
     searchPlaceholder: 'Атауы немесе компоненті бойынша іздеу...',
@@ -510,27 +521,26 @@ const I18N = {
     relatedTitle: 'Топтамадағы басқа өнімдер',
     accDesc: 'Сипаттамасы',
     accUsage: 'Қолдану тәсілі',
-    accDelivery: 'Жеткізу және қолжетімділік',
-    accDeliveryText: 'Жеткізу Алматы және бүкіл Қазақстан бойынша жүзеге асырылады. Сайтта өтінім қалдырыңыз, біздің менеджер өнімнің бар-жоғын, бағасын және ыңғайлы жеткізу әдісін нақтылайды.',
+    accDelivery: 'Жеткізу және тапсырыс',
+    accDeliveryText: 'Жеткізу Алматы және бүкіл Қазақстан бойынша жүзеге асырылады. Өнімдерді себетке қосыңыз немесе бізге тікелей WhatsApp-қа жазыңыз.',
     feat1: 'ҚР бойынша жылдам жеткізу',
     feat2: '100% түпнұсқа өнім',
-    feat3: 'Күтімді таңдау бойынша кеңес',
-    cartTitle: 'Сіздің өтініміңіз',
-    cartEmptyTitle: 'Тізім бос',
-    cartEmptyDesc: 'Кеңес алу немесе тапсырыс беру үшін каталогтан қажетті өнімдерді қосыңыз.',
-    cartOrderTitle: 'Өтінімді рәсімдеу',
+    feat3: 'WhatsApp арқылы кеңес',
+    cartTitle: 'Себет',
+    cartEmptyTitle: 'Себетіңіз бос',
+    cartEmptyDesc: 'Тапсырыс беру үшін каталогтан қажетті өнімдерді қосыңыз.',
+    cartOrderTitle: 'WhatsApp арқылы рәсімдеу',
     formName: 'Атыңыз',
     formNamePh: 'Сізге қалай хабарласуға болады?',
     formPhone: 'Байланыс телефоны',
     formPhonePh: '+7 (___) ___-__-__',
-    formAddress: 'Қала / пікір',
-    formAddressPh: 'Мысалы: Алматы, өнім бойынша сұрағым бар',
-    formSubmitOrder: 'Өтінімді жіберу',
-    orderSuccessTitle: 'Өтінім қабылданды!',
-    orderSuccessDesc: 'Рақмет! Менеджеріміз жақын арада сізбен хабарласады.',
+    formAddress: 'Қала / жеткізу мекенжайы',
+    formAddressPh: 'Мысалы: Алматы, Абай даңғылы 10',
+    formSubmitOrder: 'Тапсырысты WhatsApp-қа жіберу',
+    orderSuccessTitle: 'WhatsApp-қа өтудеміз!',
+    orderSuccessDesc: 'Рақмет! Тапсырыс тізімі менеджерге жіберу үшін дайындалды.',
     continueShopping: 'Көруді жалғастыру',
-    toastAdded: 'тізімге қосылды',
-    toastSocialSoon: 'Әлеуметтік желі мен WhatsApp сілтемелері жаңартылуда',
+    toastAdded: 'себетке қосылды',
     aboutPageTitle: 'Біз қарапайым күтімнің күшіне сенеміз',
     aboutPageDesc: 'qqq care. — тек тиімді формулалар мен адал құрамдарды таңдайтын корей косметикасының бренді. Біз корейлік күтім дәстүрлерін күнделікті өмірге бейімдейміз — артық қадамдарсыз, бірақ айқын нәтижемен.',
     aboutStat1Val: '11',
@@ -553,22 +563,29 @@ const I18N = {
     aboutCtaTitle: 'Өз күтіміңізді таңдауға дайынсыз ба?',
     aboutCtaDesc: 'Бет пен денеге арналған QUIRKY өнімдерінің толық топтамасымен танысыңыз.',
     contactsTitle: 'Байланыс',
-    contactsSub: 'Кері байланыс формасы немесе электронды пошта арқылы бізбен хабарласыңыз',
+    contactsSub: 'Біз әрдайым байланыстамыз — ыңғайлы әдісті таңдаңыз',
+    contactCardPhone: 'Телефон',
+    contactCardPhoneBtn: 'Қоңырау шалу',
+    contactCardWA: 'WhatsApp',
+    contactCardWABtn: 'WhatsApp-қа жазу',
+    contactCardIG: 'Instagram',
+    contactCardIGBtn: 'Жазылу',
     contactCardEmail: 'Электронды пошта',
     contactCardEmailBtn: 'Хат жазу',
     contactCardCity: 'Мекенжайымыз',
-    contactCardHours: 'Өтінімдерді қабылдау уақыты',
+    contactCardCityBtn: 'Картадан ашу',
+    contactCardHours: 'Жұмыс уақыты',
     hoursMonFri: 'Дс–Жм',
     hoursSat: 'Сб',
     hoursSun: 'Жс',
     hoursSunVal: 'демалыс',
     formTitle: 'Сұрақтарыңыз бар ма?',
-    formSub: 'Байланыс деректеріңізді қалдырыңыз, біз сізбен жақын арада хабарласамыз',
+    formSub: 'Бізге жазыңыз, хабарламаңыз бірден менеджердің WhatsApp чатында ашылады',
     formMsg: 'Хабарлама',
     formMsgPh: 'Сізді қандай өнім қызықтыратынын жазыңыз немесе сұрақ қойыңыз',
-    formSendBtn: 'Хабарлама жіберу',
-    formSentTitle: 'Хабарлама жіберілді!',
-    formSentDesc: 'Біз сізбен жұмыс күні ішінде хабарласамыз.'
+    formSendBtn: 'WhatsApp-қа жіберу',
+    formSentTitle: 'Хабарлама дайын!',
+    formSentDesc: 'Біз сізге WhatsApp арқылы жақын арада жауап береміз.'
   }
 };
 
@@ -593,6 +610,14 @@ function getCategoryName(catId) {
 function formatPrice(v) {
   if (!SITE_CONFIG.SHOW_PRICES || !v) return '';
   return v.toLocaleString('ru-RU') + ' ₸';
+}
+
+function getProductWhatsAppLink(product, qty = 1) {
+  const pt = getProductText(product);
+  const text = currentLang === 'kz'
+    ? `Сәлеметсіз бе! Тапсырыс бергім келеді: ${pt.name} (${qty} дана).`
+    : `Здравствуйте! Хочу заказать: ${pt.name} (${qty} шт.).`;
+  return `https://wa.me/${SITE_CONFIG.WHATSAPP_PHONE}?text=${encodeURIComponent(text)}`;
 }
 
 function saveCart() {
@@ -665,14 +690,14 @@ function renderProductCardHTML(p) {
           ${t('btnDetails')}
         </a>
         <button data-action="add" data-id="${p.id}" aria-label="${t('btnAddToCart')}" class="bg-brand text-white hover:bg-brand-light p-2.5 rounded-full transition shadow-sm flex items-center justify-center">
-          <i data-lucide="plus" style="width:18px;height:18px"></i>
+          <i data-lucide="shopping-bag" style="width:17px;height:17px"></i>
         </button>
       </div>
     </div>
   `;
 }
 
-// ---------- Корзина / Заявка ----------
+// ---------- Корзина ----------
 function totalItems() {
   return cart.reduce((s, i) => s + i.qty, 0);
 }
@@ -781,7 +806,10 @@ function renderCartBody() {
             <span class="text-xs font-bold text-gray-500 mb-1.5 block">${t('formAddress')}</span>
             <input type="text" name="address" placeholder="${t('formAddressPh')}" class="w-full rounded-2xl border-[1.5px] border-gray-200 px-4 py-3 text-sm font-medium outline-none focus:border-brand transition" />
           </label>
-          <button type="submit" class="bg-brand text-white w-full py-3.5 rounded-full font-extrabold text-sm mt-2 hover:opacity-90 active:scale-95 transition">${t('formSubmitOrder')}</button>
+          <button type="submit" class="bg-brand text-white w-full py-3.5 rounded-full font-extrabold text-sm mt-2 hover:opacity-90 active:scale-95 transition flex items-center justify-center gap-2">
+            <i data-lucide="message-circle" style="width:18px;height:18px"></i>
+            <span>${t('formSubmitOrder')}</span>
+          </button>
         </form>
       </div>`;
   }
@@ -832,22 +860,6 @@ document.addEventListener('click', (e) => {
     return;
   }
 
-  const socialTrigger = e.target.closest('[data-social-link]');
-  if (socialTrigger) {
-    const type = socialTrigger.dataset.socialLink;
-    if (type === 'whatsapp' && SITE_CONFIG.WHATSAPP_PHONE) {
-      window.open(`https://wa.me/${SITE_CONFIG.WHATSAPP_PHONE}`, '_blank');
-      return;
-    }
-    if (type === 'instagram' && SITE_CONFIG.INSTAGRAM_URL) {
-      window.open(SITE_CONFIG.INSTAGRAM_URL, '_blank');
-      return;
-    }
-    e.preventDefault();
-    showToast(t('toastSocialSoon'));
-    return;
-  }
-
   const actionBtn = e.target.closest('[data-action]');
   if (actionBtn) {
     const id = Number(actionBtn.dataset.id);
@@ -878,16 +890,13 @@ document.addEventListener('submit', (e) => {
     e.preventDefault();
     if (cart.length === 0) return;
 
-    // Если в будущем будет указан номер WhatsApp, заявка автоматически откроет WhatsApp
-    if (SITE_CONFIG.WHATSAPP_PHONE) {
-      const formData = new FormData(e.target);
-      const itemsText = cart.map(i => {
-        const p = PRODUCTS.find(prod => prod.id === i.id);
-        return p ? `• ${getProductText(p).name} (${i.qty} шт.)` : '';
-      }).join('\n');
-      const msg = `Здравствуйте! Новая заявка с сайта qqqcare.kz:\n\n${itemsText}\n\nИмя: ${formData.get('name')}\nТелефон: ${formData.get('phone')}\nКомментарий: ${formData.get('address') || '-'}`;
-      window.open(`https://wa.me/${SITE_CONFIG.WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
-    }
+    const formData = new FormData(e.target);
+    const itemsText = cart.map(i => {
+      const p = PRODUCTS.find(prod => prod.id === i.id);
+      return p ? `• ${getProductText(p).name} (${i.qty} шт.)` : '';
+    }).join('\n');
+    const msg = `Здравствуйте! Заказ с сайта qqqcare.kz:\n\n${itemsText}\n\nИмя: ${formData.get('name')}\nТелефон: ${formData.get('phone')}\nАдрес/комментарий: ${formData.get('address') || '-'}`;
+    window.open(`https://wa.me/${SITE_CONFIG.WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
 
     orderSuccess = true;
     cart = [];
