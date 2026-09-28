@@ -35,9 +35,8 @@
   <!-- ==================== HEADER ==================== -->
   <header class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-2">
-        <span class="text-3xl font-black text-brand tracking-tight">qqq</span>
-        <span class="bg-brand/10 text-brand px-2.5 py-1 rounded-full text-lg font-extrabold">care.</span>
+      <a href="index.html" class="flex items-center">
+        <img src="img/logo.png" alt="qqq care." class="h-10 sm:h-12 w-auto object-contain" />
       </a>
 
       <nav class="hidden sm:flex items-center gap-8">
@@ -52,10 +51,18 @@
           <button data-set-lang="kz" class="px-3 py-1 rounded-full text-xs font-extrabold text-gray-500 hover:text-brand transition">KZ</button>
         </div>
 
-        <button id="cart-btn" aria-label="Открыть заявку" class="relative text-gray-600 hover:bg-brand/10 hover:text-brand rounded-full p-2.5 transition">
+        <a href="https://www.instagram.com/qqqcare.kz?stkn=MWl6ZThnaTM0NW4wcA==" target="_blank" rel="noopener" aria-label="Instagram" class="hidden sm:flex text-gray-600 hover:bg-brand/10 hover:text-brand rounded-full p-2.5 transition">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+        </a>
+
+        <button id="cart-btn" aria-label="Открыть корзину" class="relative text-gray-600 hover:bg-brand/10 hover:text-brand rounded-full p-2.5 transition">
           <i data-lucide="shopping-bag" style="width:22px;height:22px"></i>
           <span id="cart-badge" class="hidden absolute -top-1 -right-1 bg-brand text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
         </button>
+
+        <a href="https://wa.me/77000603310" target="_blank" rel="noopener" class="hidden md:flex bg-brand text-white px-5 py-2.5 rounded-full font-bold text-xs items-center gap-2 hover:bg-brand-light transition shadow-md">
+          <i data-lucide="message-circle" style="width:16px;height:16px"></i> WhatsApp
+        </a>
 
         <button id="menu-btn" aria-label="Открыть меню" class="sm:hidden text-gray-600 hover:bg-brand/10 hover:text-brand rounded-full p-2.5 transition">
           <i data-lucide="menu" style="width:22px;height:22px"></i>
@@ -67,6 +74,10 @@
       <a href="catalog.html" data-i18n="navCatalog" class="block text-brand font-extrabold text-sm py-2.5">Каталог</a>
       <a href="about.html" data-i18n="navAbout" class="block text-gray-600 hover:text-brand font-semibold text-sm py-2.5 transition">О бренде</a>
       <a href="contacts.html" data-i18n="navContacts" class="block text-gray-600 hover:text-brand font-semibold text-sm py-2.5 transition">Контакты</a>
+      <a href="https://wa.me/77000603310" target="_blank" rel="noopener" class="mt-2 bg-brand text-white px-5 py-3 rounded-full font-bold text-center flex items-center justify-center gap-2">
+        <i data-lucide="message-circle" style="width:18px;height:18px"></i>
+        <span data-i18n="navWriteWhatsApp">Написать в WhatsApp</span>
+      </a>
     </nav>
   </header>
 
@@ -107,26 +118,52 @@
     </div>
   </section>
 
-  <!-- ==================== FOOTER ==================== -->
-  <footer class="bg-brand text-white rounded-t-[2.5rem] mt-6">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 py-12 sm:py-14">
-      <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-8">
+  <!-- ==================== ФУТЕР ==================== -->
+  <footer class="bg-brand text-white rounded-t-[3rem] mt-6">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 py-14 sm:py-16">
+      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-10">
         <div>
-          <p class="text-2xl font-extrabold mb-2">qqq care.</p>
-          <p class="text-sm italic text-white/70 font-medium">quirky qualitative quintessential</p>
+          <a href="index.html" class="inline-block mb-3">
+            <img src="img/logo.png" alt="qqq care." class="h-10 w-auto object-contain brightness-0 invert" />
+          </a>
+          <p class="text-sm italic text-white/60 font-medium">quirky qualitative quintessential</p>
+          <p data-i18n="footerDesc" class="text-white/70 text-sm mt-4 font-medium">Корейская косметика, которая действительно работает. Премиум уход для сияющей кожи.</p>
         </div>
-        <div class="flex flex-col gap-2 text-sm">
-          <a href="catalog.html" data-i18n="navCatalog" class="text-white/75 hover:text-white font-semibold transition">Каталог</a>
-          <a href="about.html" data-i18n="navAbout" class="text-white/75 hover:text-white font-semibold transition">О бренде</a>
-          <a href="contacts.html" data-i18n="navContacts" class="text-white/75 hover:text-white font-semibold transition">Контакты</a>
+        <div>
+          <p data-i18n="footerNav" class="font-extrabold uppercase text-xs tracking-widest text-white/50 mb-4">Разделы</p>
+          <div class="flex flex-col gap-3 text-sm font-medium">
+            <a href="catalog.html" data-i18n="navCatalog" class="text-white/80 hover:text-white transition">Каталог</a>
+            <a href="about.html" data-i18n="navAbout" class="text-white/80 hover:text-white transition">О бренде</a>
+            <a href="contacts.html" data-i18n="navContacts" class="text-white/80 hover:text-white transition">Контакты</a>
+          </div>
         </div>
-        <div class="flex flex-col gap-2 text-sm">
-          <span class="text-white/75 flex items-center gap-2 font-semibold"><i data-lucide="map-pin" style="width:15px;height:15px"></i> <span data-i18n="footerCity">Алматы, Казахстан</span></span>
-          <a href="mailto:hello@qqqcare.kz" class="text-white/75 hover:text-white flex items-center gap-2 font-semibold"><i data-lucide="mail" style="width:15px;height:15px"></i> hello@qqqcare.kz</a>
+        <div>
+          <p data-i18n="footerContacts" class="font-extrabold uppercase text-xs tracking-widest text-white/50 mb-4">Контакты</p>
+          <div class="flex flex-col gap-3 text-sm font-medium">
+            <a href="tel:+77000603310" class="text-white/80 hover:text-white flex items-center gap-2 transition"><i data-lucide="phone" style="width:16px;height:16px"></i> +7 (700) 060-33-10</a>
+            <span class="text-white/80 flex items-center gap-2"><i data-lucide="map-pin" style="width:16px;height:16px"></i> <span data-i18n="footerCity">Алматы, Казахстан</span></span>
+            <a href="mailto:hello@qqqcare.kz" class="text-white/80 hover:text-white flex items-center gap-2 transition"><i data-lucide="mail" style="width:16px;height:16px"></i> hello@qqqcare.kz</a>
+          </div>
+        </div>
+        <div>
+          <p data-i18n="footerConnect" class="font-extrabold uppercase text-xs tracking-widest text-white/50 mb-4">Мы на связи</p>
+          <div class="flex items-center gap-3 mb-5">
+            <a href="https://www.instagram.com/qqqcare.kz?stkn=MWl6ZThnaTM0NW4wcA==" target="_blank" rel="noopener" aria-label="Instagram" class="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition">
+              <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            </a>
+            <a href="https://wa.me/77000603310" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition">
+              <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+            </a>
+          </div>
+          <a href="https://wa.me/77000603310" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white text-brand font-bold px-6 py-3 rounded-full hover:bg-gray-100 transition text-sm shadow-md">
+            <i data-lucide="message-circle" style="width:16px;height:16px"></i>
+            <span data-i18n="footerOrderBtn">Заказать в WhatsApp</span>
+          </a>
         </div>
       </div>
-      <div class="border-t border-white/15 mt-10 pt-6 text-xs text-white/60 font-medium text-center sm:text-left">
+      <div class="border-t border-white/15 mt-12 pt-6 text-xs text-white/50 font-medium flex flex-col sm:flex-row justify-between gap-2">
         <span id="footer-year"></span>
+        <span data-i18n="footerMadeWith">Сделано с 💚 для твоей кожи</span>
       </div>
     </div>
   </footer>
@@ -135,7 +172,7 @@
   <div id="cart-overlay" class="fixed inset-0 bg-black/40 z-40 transition-opacity duration-300 opacity-0 pointer-events-none"></div>
   <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full sm:w-[440px] bg-white z-50 shadow-2xl flex flex-col transition-transform duration-300 translate-x-full">
     <div class="flex items-center justify-between px-5 sm:px-6 h-16 border-b border-gray-100 flex-shrink-0">
-      <h2 id="cart-title" class="font-extrabold text-lg text-brand">Ваша заявка</h2>
+      <h2 id="cart-title" class="font-extrabold text-lg text-brand">Корзина</h2>
       <button id="cart-close" aria-label="Закрыть" class="text-gray-500 hover:bg-brand/10 hover:text-brand rounded-full p-2 transition">
         <i data-lucide="x" style="width:20px;height:20px"></i>
       </button>
